@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>O que é OSINT? - Técnicas e Ferramentas</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Um blog com objetivo de compartilhar conhecimento e experiências sobre Hacking, Linux, Programação, Python, Segurança e muitos outros assuntos.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/962722a01a.js" crossorigin="anonymous"></script>
+        <style>
+
+            * {
+                font-family: "Roboto Regular", sans-serif;
+                box-sizing: border-box;
+            }
+
+            header {
+                margin: 20px;
+                padding: 20px;
+                border-bottom: 1px solid black;
+                width: 50%;
+            }
+
+            main {
+                display: grid;
+                width: 60%;
+                margin: auto;
+            }
+
+            p {
+                font-size: 17px;
+            }
+
+            a {
+                color: black;
+                text-decoration: none;
+            }
+
+            span {
+               margin: 5px;
+            }
+
+            i {
+                font-size: 22px;
+            }
+
+            li {
+                padding: 6px;
+            }
+
+            .link {
+                color: green;
+            }
+
+            footer {
+                margin: 14px;
+                padding: 10px;
+                border-top: 1px solid black;
+                width: 20%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">ScriptBr 101</a></h1>
+            <span><a href="https://www.youtube.com/@ScriptBr101"><i class="fab fa-youtube"></i></a></span>
+
+            <span><a href="https://www.instagram.com/scriptbr101/"><i class="fab fa-instagram"></i></a></span>
+        </header>
+
+        <main>
+            <h1>O que é OSINT?</h1>
+
+            <p>OSINT (Open-Source Intelligence), em tradução livre para o português, Inteligência de código aberto é a prática de coletar informações de fontes abertas, ou seja, de fontes que estão publicamente disponíveis, por exemplo, redes sociais, sites, bibliotecas, registro público, a dark web. As técnicas de OSINT podem ser usadas pelo governo, jornalistas investigativos, engenheiros sociais, pentesters, entre outros.</p>
+
+            <h2>Técnicas de OSINT</h2>
+
+            <p>O OSINT abrange várias técnicas para fazer a coleta e análise das informações que estão disponíveis publicamente. Segundo a <a href="https://www.sans.org/blog/what-is-open-source-intelligence/" class="link">SANS</a> as mais comuns são:</p>
+
+            <ol>
+                <li><b>Mecanismos de busca:</b> Mecanismos de busca como Google, Bing e Yahoo são ferramentas valiosas para o OSINT. Usando operadores de pesquisa avançada, os analistas podem filtrar e refinar rapidamente os resultados da pesquisa para encontrar informações relevantes.</li>
+
+                <li><b>Mídias sociais:</b> Plataformas de mídia social como Twitter, Facebook e LinkedIn são fontes valiosas de OSINT. Ao monitorar e analisar a atividade de mídia social, os analistas podem obter informações sobre tendências, sentimentos e ameaças potenciais.</li>
+
+                <li><b>Registros públicos:</b> registros públicos, como documentos judiciais, registros de propriedades e registros de negócios são fontes valiosas de OSINT. Ao acessar esses registros, os analistas podem reunir informações sobre indivíduos, organizações e outras entidades.</li>
+
+                <li><b>Fontes de notícias:</b> Fontes de notícias como jornais, revistas e veículos de notícias on-line são fontes valiosas de OSINT. Ao monitorar e analisar artigos de notícias, os analistas podem obter informações sobre eventos atuais, tendências e ameaças potenciais.</li>
+
+                <li><b>Web Scraping:</b> Web scraping envolve o uso de ferramentas de software para extrair dados de sites. Ao coletar dados de vários sites, os analistas podem coletar grandes quantidades de dados de forma rápida e eficiente.</li>
+
+                <li><b>Ferramentas de análise de dados:</b> Ferramentas de análise de dados como Excel, Tableau e R são valiosas para analisar grandes conjuntos de dados. Usando essas ferramentas, os analistas podem identificar padrões, tendências e relacionamentos nos dados.</li>
+            </ol>
+
+            <h2>Ferramentas</h2>
+
+            <b>Google</b>
+            <p>O google é um poderoso mecanismo de busca para os usuários comuns, mas quando se conhece as técnicas de google dorks ele se torna um aliado mais poderoso ainda na hora de coletar informações.</p>
+
+            <b>Maltego</b>
+            <p><a href="https://docs.maltego.com/support/solutions/articles/15000019166-what-is-maltego-" class="link">Descrição do site do Maltego:</a></p>
+
+            <p>“Maltego é uma ferramenta abrangente para análise de links gráficos que oferece mineração de dados em tempo real e coleta de informações, bem como a representação dessas informações em um gráfico baseado em nós, tornando padrões e conexões de múltiplas ordens entre essas informações facilmente identificáveis.</p>
+                
+            <p>Com o Maltego, você pode facilmente extrair dados de fontes dispersas, mesclar automaticamente informações correspondentes em um gráfico e mapeá-las visualmente para explorar seu cenário de dados.”</p>
+
+            <b><a href="https://github.com/ninoseki/mitaka" class="link">Mitaka</a></b>
+            <p>O Mitaka é uma extensão de navegador que auxilia na hora de fazer pesquisas relacionadas ao seu alvo.</p>
+
+            <b>SpiderFoot</b>
+            <p><a href="https://github.com/smicallef/spiderfoot" class="link">Descrição do repositório oficial:</a></p>
+            <p>“O SpiderFoot é uma ferramenta de automação de inteligência de código aberto (OSINT). Ele se integra a praticamente todas as fontes de dados disponíveis e utiliza uma variedade de métodos para análise de dados, tornando esses dados fáceis de navegar.</p>
+
+            <p>O SpiderFoot tem um servidor web embutido para fornecer uma interface limpa e intuitiva baseada na web, mas também pode ser usado completamente através da linha de comando. Ele é escrito em Python 3 e licenciado pelo MIT.”</p>
+
+
+            <b><a href="https://builtwith.com/" class="link">BuiltWith</a></b>
+            <p>O BuiltWith mostra quais tecnologias e ferramentas foram usadas para construir um site.</p>
+
+            <b><a href="https://intelx.io/" class="link">Intelligence X</a></b>
+            <p>O Intelligence X é um mecanismo de pesquisa que busca por vazamentos e informações sobre domínios, endereços IP e endereços de e-mail.</p>
+
+            <p>Segundo o próprio site da <a href="https://intelx.io/about" class="link">Intelligence X</a>:</p>
+
+            <p>“O Intelligence X diferencia-se de outros motores de busca das seguintes formas:</p>
+
+            <ol>
+                <li>A pesquisa trabalha com seletores, ou seja, termos de pesquisa específicos, como endereços de e-mail, domínios, URLs, IPs, CIDRs, endereços Bitcoin, hashes IPFS, etc.</li>
+
+                <li>Ele faz buscas em locais como a darknet, plataformas de compartilhamento de documentos, dados whois, vazamentos de dados públicos e outros.</li>
+
+                <li>Ele mantém um arquivo de dados históricos de resultados, semelhante a como o Wayback Machine de archive.org armazena cópias históricas de sites.”</li>
+            </ol>
+
+            <b>Recon-ng</b>
+            <p><a href="https://github.com/lanmaster53/recon-ng" class="link">Descrição do repositório oficial do GitHub</a>:</p>
+
+            <p>“Recon-ng é uma estrutura de reconhecimento completa projetada com o objetivo de fornecer um ambiente poderoso para realizar reconhecimento baseado na web de código aberto de forma rápida e completa.</p>
+
+            <p>O Recon-ng tem uma aparência semelhante ao Metasploit Framework, reduzindo a curva de aprendizado para alavancar o framework. No entanto, é bem diferente. O Recon-ng não se destina a competir com os frameworks existentes, uma vez que é projetado exclusivamente para reconhecimento de código aberto baseado na web. Se você quiser explorar, use o Metasploit Framework. Se você deseja fazer engenharia social, use o Social-Engineer Toolkit. Se você quiser realizar reconhecimento, use Recon-ng!”</p>
+
+            <b><a href="https://www.shodan.io/" class="link">Shodan</a></b>
+
+            <p>O shodan é um motor de busca usado para pesquisar informações sobre dispositivos conectados à internet, mostrando informações como endereços IP e portas abertas.</p>
+
+
+            <b>Metagoofil</b>
+            <p><a href="https://github.com/opsdisk/metagoofil" class="link">Descrição do repositório oficial do GitHub:</a></p>
+
+            <p>“Metagoofil pesquisa no Google por tipos específicos de arquivos que estão sendo hospedados publicamente em um site e, opcionalmente, os baixa para a sua caixa local. Isso é útil para coleta de Open Source Intelligence, testes de penetração ou determinação de quais arquivos sua organização está vazando para indexadores de pesquisa como o Google.”</p>
+
+            <b>theHarvester</b>
+            <p><a href="https://github.com/laramies/theHarvester" class="link">Descrição do repositório oficial do GitHub:</a></p>
+
+            <p>“theHarvester é uma ferramenta simples de usar, mas poderosa projetada para ser usada durante a etapa de reconhecimento de uma avaliação de red team ou teste de penetração. Ele executa a coleta de inteligência de código aberto (OSINT) para ajudar a determinar o cenário de ameaças externas de um domínio. A ferramenta reúne nomes, e-mails, IPs, subdomínios e URLs usando vários recursos públicos.”</p>
+
+
+            <b>Seekr</b>
+            <p><a href="https://github.com/seekr-osint/seekr" class="link">Descrição do repositório do GitHub:</a></p>
+
+            <p>“O Seekr é um kit de ferramentas multiuso para coletar e gerenciar dados OSINT com uma interface web elegante. A nossa vista de ambiente de trabalho permite-lhe ter todas as suas ferramentas OSINT favoritas integradas numa só. O back-end é escrito em Go com BadgerDB como banco de dados e oferece uma ampla gama de recursos para coleta, organização e análise de dados. Se você é um pesquisador, investigador ou apenas alguém que procura reunir informações, o seekr facilita a localização e o gerenciamento dos dados de que você precisa. Experimente e veja como ele pode simplificar seu fluxo de trabalho na OSINT!”</p>
+
+            <b><a href="https://github.com/p1ngul1n0/blackbird" class="link">Blackbird</a></b>
+
+            <p>Essa ferramenta pesquisa contas por nome de usuário em 581 sites.</p>
+
+            <b>PhoneInfoga</b>
+            <p><a href="https://github.com/sundowndev/PhoneInfoga" class="link">Descrição do repositório oficial do PhoneInfoga no GitHub:</a></p>
+
+            <p>“PhoneInfoga é uma das ferramentas mais avançadas para digitalizar números de telefone internacionais. Ele permite que você primeiro reúna informações básicas, como país, área, operadora e tipo de linha, depois usa várias técnicas para tentar encontrar o provedor VoIP ou identificar o proprietário. Ele funciona com uma coleção de scanners que devem ser configurados para que a ferramenta seja eficaz. O PhoneInfoga não automatiza tudo, está lá apenas para ajudar a investigar os números de telefone.”</p>
+
+            <b>Photon</b>
+            <p><a href="https://github.com/s0md3v/Photon" class="link">Descrição do perfil oficial do Photon no GitHub:</a></p>
+
+            <p>“Rastreador incrivelmente rápido projetado para OSINT.</p>
+
+            <p>O Photon pode extrair os seguintes dados durante o rastreamento:</p>
+            <ul>
+                <li>URLs (no escopo e fora do escopo)</li>
+                <li>URLs com parâmetros (example.com/gallery.php?id=2)</li>
+                <li>Intel (e-mails, contas de mídia social, buckets da Amazon etc.)</li>
+                <li>Arquivos (pdf, png, xml etc.)</li>
+                <li>Chaves secretas (chaves auth/API e hashes)</li>
+                <li>Arquivos JavaScript & Pontos de extremidade presentes neles</li>
+                <li>Cadeias de caracteres correspondentes ao padrão regex personalizado</li>
+                <li>Subdomínios & Dados relacionados ao DNS</li>
+            </ul>
+
+            <p>As informações extraídas são salvas de forma organizada ou podem ser exportadas como json.”</p>
+
+            <b>fb_friend_list_scraper</b>
+            <p><a href="https://github.com/n0kovo/fb_friend_list_scraper" class="link">Descrição do repositório oficial da ferramenta no GitHub:</a></p>
+
+            <p>“Ferramenta OSINT para raspar nomes e nomes de usuários de grandes listas de amigos no Facebook.”</p>
+
+            <b>Osintgram</b>
+            <p><a href="https://github.com/Datalux/Osintgram" class="link">Descrição do repositório oficial do GitHub:</a></p>
+
+            <p>“Osintgram é uma ferramenta OSINT no Instagram para coletar, analisar e executar reconhecimento.</p>
+
+            <p>O Osintgram oferece um shell interativo para realizar análises na conta do Instagram de qualquer usuário por seu nickname.</p>
+
+            <p><b>Perguntas Frequentes:</b></p>
+            <ol>
+                <li>Posso acessar o conteúdo de um perfil privado?
+                    Não, você não pode obter informações sobre perfis privados. Você só pode obter informações de um perfil público ou de um perfil que você segue. As ferramentas que dizem ser bem-sucedidas são golpes!</li>
+
+                <li>O que é e como posso ignorar o erro challenge_required?
+                    O erro significa que o Instagram percebe um comportamento suspeito em seu perfil, então precisa verificar se você é uma pessoa real ou um bot. Para evitar isso, você deve seguir o link sugerido e concluir a operação necessária (inserir um código, confirmar e-mail, etc).”
+                    </li>
+            </ol>
+
+            <b>Sterra</b>
+            <p><a href="https://github.com/novitae/sterraxcyl" class="link">Descrição do repositório oficial do GitHub:</a></p>
+
+            <p>“Uma ferramenta única para obter informações sobre uma conta do instagram a partir de seus seguidores.</p>
+
+            <p>A principal função do Sterra é exportar listas de seguidores | seguindo | do Instagram para o excel | csv | json com informações sobre as contas.</p>
+
+            <p> Ele também pode analisar listas exportadas para procurar contas pessoais (o que significa estimar quais contas estão no círculo próximo do seu alvo).</p>
+
+            <p>Por fim, ele pode comparar duas listas para encontrar usuários.”</p>
+
+            <b>Toutatis</b>
+            <p><a href="https://github.com/megadose/toutatis" class="link">Descrição do repositório oficial no GitHub:</a></p>
+
+            <p>“Toutatis é uma ferramenta que permite extrair informações de contas do instagram, como e-mails, números de telefone e muito mais.”</p>
+
+
+            <b>Telegram Nearby Map</b>
+            <p><a href="https://github.com/tejado/telegram-nearby-map" class="link">Descrição do repositório oficial da ferramenta:</a></p>
+
+            <p>“O Telegram Nearby Map usa o OpenStreetMap e a biblioteca oficial do Telegram para encontrar a posição dos usuários próximos.</p>
+
+            <p>Como funciona?</p>
+
+            <p>A cada 25 segundos todos os usuários próximos serão recebidos com TDLib do Telegram. Isso inclui a distância de cada usuário próximo à "minha" localização. Com três distâncias de três pontos diferentes, é possível calcular a posição do usuário próximo. Isso só encontra usuários do Telegram que ativaram o recurso próximo. Por padrão, ele é desativado.”</p>
+
+
+            <b>h8mail</b>
+            <p><a href="https://github.com/khast3x/h8mail" class="link">Descrição da ferramenta segundo a sua Wiki:</a></p>
+
+            <p>“O h8mail identifica dados de violação relevantes para a entrada do usuário usando vários serviços de API, bem como pesquisa local multiprocessada. Por padrão, o h8mail usará scylla.sh e hunter.io, o que já é suficiente para identificar violações e encontrar alguma senha.</p>
+
+            <p>O h8mail torna-se especialmente poderoso quando usado com chaves de API registradas e dumps de credenciais locais.</p>
+
+            <p>Características:</p>
+            <ul>
+                <li>Correspondência de padrão de e-mail (reg exp), útil para leitura de outras saídas de ferramentas</li>
+
+                <li>Passe URLs para localizar e direcionar e-mails diretamente em páginas</li>
+
+                <li>Padrões frouxos para buscas locais ("john.smith", "evilcorp")</li>
+
+                <li>Instalação indolor. Requer apenas pip requests</li>
+
+                <li>Leitura de arquivos em massa para segmentação</li>
+
+                <li>Saída para arquivo CSV ou JSON</li>
+
+                <li>Compatível com os scripts torrent "Breach Compilation"</li>
+
+                <li>Pesquisar texto não criptografado e arquivos .gz compactados localmente usando multiprocessamento. (Compatível com "Collection#1")</li>
+
+                <li>Receba e-mails relacionados</li>
+
+                <li>Persiga e-mails relacionados, adicionando-os à pesquisa em andamento</li>
+
+                <li>Suporta serviços de pesquisa premium para usuários avançados</li>
+
+                <li>APIs premium de consulta personalizadas. Suporta nome de usuário, hash, ip, domínio e senha e muito mais</li>
+
+                <li>Reagrupar resultados de violação para todos os destinos e métodos</li>
+
+                <li>Inclui opção para ocultar senhas para demonstrações</li>
+
+                <li>Cores deliciosas"</li>
+
+            </ul>
+
+            <b>Squatm3gator</b>
+            <p><a href="https://github.com/david3107/squatm3gator" class="link">Descrição do repositório oficial no GitHub:</a></p>
+
+            <p>“Squatm3gator é uma solução web completa baseada na ferramenta python squatm3, projetada para enumerar domínios disponíveis gerados modificando o nome de domínio original através de diferentes técnicas:</p>
+
+            <ul>
+                <li>Ataques de substituição (Substitution)</li>
+                <li>Ataque de inversão (Flipping)</li>
+                <li>Ataque de homoglifo (Homoglyph) rápido (executar um ataque rápido de homoglifo (homoglyph), mutando apenas uma letra de cada vez)</li>
+                <li>Ataque homoglifo (homoglyph) completo (gera todas as combinações possíveis)</li>
+            </ul>
+
+            <p>A ferramenta tem como objetivo ajudar testadores de penetração a identificar domínios a serem usados em simulações de ataques de phishing e analistas de segurança para detectar e prevenir ataques de cybersquatting.”</p>
+
+            <b>Oblivion</b>
+            <p><a href="https://github.com/loseys/Oblivion" class="link">Descrição do repositório oficial:</a></p>
+
+            <p>“O Oblivion é uma ferramenta focada no monitoramento em tempo real de novos vazamentos de dados, notificando se as credenciais do usuário foram vazadas. Também é possível verificar se alguma credencial de usuário foi vazada antes. O Oblivion tem dois modos:</p>
+
+            <ul>
+                <li>Oblivion Client: modo gráfico</li>
+
+                <li>Oblivion Server: modo com funcionalidades de API</li>
+            </ul>
+
+            <p>Observação : O cliente de Oblivion e o servidor de Oblivion são independentes.”</p>
+
+
+            <p>Espero que tenham gostado e aprendido algo novo hoje. Até o próximo artigo!!</p>
+
+        </main>
+
+        <footer>
+            <span><a href="https://www.youtube.com/@ScriptBr101">Autor: ScriptBr 101</a></span>
+        </footer>
+    </body>
+</html>
