@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hacking: Introdução ao Linux</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Um blog com objetivo de compartilhar conhecimento e experiências sobre Hacking, Linux, Programação, Python, Segurança e muitos outros assuntos.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/962722a01a.js" crossorigin="anonymous"></script>
+        <style>
+
+            * {
+                font-family: "Roboto Regular", sans-serif;
+                box-sizing: border-box;
+            }
+
+            header {
+                margin: 20px;
+                padding: 20px;
+                border-bottom: 1px solid black;
+                width: 50%;
+            }
+
+            main {
+                display: grid;
+                width: 60%;
+                margin: auto;
+            }
+
+            p {
+                font-size: 17px;
+            }
+
+            a {
+                color: black;
+                text-decoration: none;
+            }
+
+            span {
+               margin: 5px;
+            }
+
+            i {
+                font-size: 22px;
+            }
+
+            li {
+                padding: 4px;
+            }
+
+            .link {
+                color: green;
+            }
+
+            footer {
+                margin: 14px;
+                padding: 10px;
+                border-top: 1px solid black;
+                width: 20%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">ScriptBr 101</a></h1>
+            <span><a href="https://www.youtube.com/@ScriptBr101"><i class="fab fa-youtube"></i></a></span>
+
+            <span><a href="https://www.instagram.com/scriptbr101/"><i class="fab fa-instagram"></i></a></span>
+        </header>
+
+        <main>
+            <h1>Introdução ao Linux - Conceitos básicos</h1>
+
+            <p>Olá pessoal, tudo tranquilo?</p>
+
+            <p>Neste artigo você irá aprender os conceitos básicos do Linux, que inclui os comandos mais utilizados para manipulação de arquivos, permissões de acesso, compactação e descompactação de arquivos, entre várias outros assuntos.</p>
+
+            <h2>O que é Linux?</h2>
+
+            <p>O Linux é um sistema operacional, assim como o Windows e o MacOS, com a diferença de ter o seu código aberto, o que permitiu o desenvolvimento de várias distribuições Linux (ou simplesmente distro). Em termos mais técnicos o Linux é só o kernel, o kernel é o que gerencia recursos do computador. O kali linux foi feito usando esse kernel, por isso nós falamos que o kali é uma distribuição linux.</p>
+
+            <p>Existem várias distribuições Linux, como o Ubuntu e o Linux Mint. O que diferencia o kali delas é o fato dele ser voltado para a área de hacking, por isso várias ferramentas já vem instaladas nele, mas se você quiser usar outra distribuição e instalar as mesmas ferramentas é totalmente possível.</p>
+
+            <h2>O que é uma distribuição Linux?</h2>
+
+            <p>Uma distribuição Linux ou distro é simplesmente um sistema operacional que usa alguma parte do Kernel Linux.</p>
+
+            <p>Exemplos de distribuições Linux:</p>
+            <ul>
+                <li>Linux Mint</li>
+                <li>Ubuntu</li>
+                <li>Debian</li>
+                <li>Kali Linux</li>
+            </ul>
+
+            <h2>Interpretador de comandos</h2>
+
+            <p>Antes de ver os comandos do terminal, é importante conhecer alguns conceitos básicos.</p>
+
+            <p>O interpretador de comandos (ou shell) é o responsável por executar os comandos fornecidos pelo usuário, ou seja, o shell é o responsável por fazer a intermediação entre o sistema operacional e o usuário. O shell padrão na maioria dos sistemas Linux é o Bash (Bourne Again Shell). Existem outros shells como: Sash; Sh; Zsh; entre outros.</p>
+
+            <p>O shell pode ser dividido em dois grupos:</p>
+
+            <ul>
+                <li>CLI (Command Line Interface) : são shells que possuem a interface baseada em linha de comando.</li>
+
+                <li>GUI (Graphical User Interface) : são shells que usam interface gráfica, como por exemplo o Windows Explorer.</li>
+            </ul>
+
+            <h2>Principais comandos do Linux:</h2>
+
+            <h3>Manipulação de diretório e arquivos:</h3>
+
+            <p>Uma coisa muito importante que você deve lembrar é que tudo no Linux são arquivos. O GNU/Linux é Case Sensitive, ou seja, ele diferencia letras maiúsculas de minúsculas.</p>
+
+            <b>ls</b>
+            <p>O comando ls é usado para listar o conteúdo de um diretório, por exemplo nomes de arquivos e diretórios. Diretório são pastas.</p>
+
+            <p>Com a opção -l é listado mais detalhes, como data de criação, permissões.</p>
+
+            <p>Com a opção -a é listado os arquivos ocultos. Arquivos ocultos são arquivos que começam com um ponto.</p>
+
+            <p>Existem várias outras opções, para conhecê-las digite: ls --help</p>
+
+            <b>pwd</b>
+            <p>O comando pwd imprime o caminho (localização) do diretório, começando da raiz.</p>
+
+            <b>cd</b>
+            <p>O comando cd é usado para mudar de diretório. Esse comando é essencial para navegar na estrutura de diretórios</p>
+
+            <p>O Linux tem uma estrutura de diretório definida pelo FHS
+                (Filesystem Hierarchy Standard). Essa estrutura organiza os arquivos de forma hierárquica. Essa estrutura é importante para ajudar a manter a compatibilidade entre as várias distribuições Linux.</p>
+
+            <p>Para acessar o diretório raiz digite: <b>cd /</b></p>
+
+            <p>O diretório home é onde os usuários ficam: <b>cd home</b></p>
+
+            <p>No caso, sou o usuário kali, que é o usuário padrão.</p>
+
+            <p>Quando entramos no diretório kali, vemos os arquivos do usuário:
+                <br><b>cd kali</b><br>
+
+                <b>ls</b>
+            </p>
+
+            <p>Podemos acessar o diretório kali usando um caminho absoluto, que é simplesmente digitar todo o caminho a ser percorrido.</p>
+
+            <p>Então, para acessar o diretório kali, vai ficar assim:</p>
+
+            <b>cd /home/kali</b>
+
+            <p>Podemos usar o pwd para confirmar a nossa localização:</p>
+
+            <b>pwd</b>
+
+            <p>Vamos voltar novamente para o diretório raiz:</p>
+
+            <b>cd /</b>
+
+            <p>Bem, é possível, é até mais eficiente usar só o comando cd para voltar ao diretório home:</p>
+
+            <b>cd</b>
+            <br>
+            <br>
+
+            <b>mkdir</b>
+            <p>O comando mkdir cria um diretório (pasta). Um diretório é igual uma pasta pode ser usado para armazenar arquivos ou outros diretórios.</p>
+
+            <p>É possível criar mais de um diretório com um único comando:</p>
+
+            <b>mkdir exemplo1 exemplo2</b>
+
+            <br>
+            <br>
+
+            <b>rmdir</b>
+            <p>Esse comando remove (apaga) um diretório. O diretório deve estar vazio para ser apagado.</p>
+
+            <b>rmdir exemplo</b>
+            <br>
+            <br>
+
+            <b>touch</b>
+            <p>Esse comando é usado para criar arquivos vazios, ele também pode ser usado para mudar a data e hora que um arquivo foi criado.</p>
+
+            <p>A opção -t é usada para modificar a data e a hora. Essa opção usa o formato Mês, Dias, Horas e opcionalmente o ano e segundos.</p>
+
+            <p>Para criar um arquivo vazio digite:</p>
+
+            <b>touch exemplo.txt</b>
+
+            <br>
+            <br>
+
+            <b>cat</b>
+            <p>Esse comando mostra o conteúdo de um arquivo.</p>
+            <b>cat exemplo/texto.txt</b>
+
+            <p>A opção -n mostra o número das linhas enquanto o conteúdo do arquivo é mostrado:</p>
+            <b>cat -n exemplo/texto.txt</b>
+
+            <br>
+            <br>
+
+            <b>tee</b>
+            <p>O comando tee envia a saída de um comando para o terminal e para um arquivo.</p>
+
+            <b>ls -l | tee exemplo.txt</b>
+
+            <p>Agora se listarmos novamente os arquivos: <b>ls</b></p>
+
+            <p>Veremos que o arquivo exemplo.txt foi criado. E se olharmos dentro do arquivo exemplo.txt veremos o resultado do ls -l</p>
+
+            <p>Em resumo, o pipe ( | ) envia a saída do comando ls -l para o tee, que vai exibir o resultado no terminal e vai gravar o resultado no arquivo exemplo.txt</p>
+
+            <b>cat exemplo.txt</b>
+
+            <p>É possível também enviar a saída de um comando só para um arquivo usando o sinal maior que. Por exemplo:</p>
+
+            <b>ls > listagem.txt</b>
+
+            <p>Vai enviar o resultado do comando ls para o arquivo listagem.txt (que será criado), vamos usar o ls</p>
+
+            <p>Bem, o arquivo foi criado, agora vamos verificar o conteúdo do arquivo:</p>
+            <b>cat listagem.txt</b>
+
+            <br>
+            <br>
+
+            <b>tac</b>
+            <p>O comando tac mostra o conteúdo do arquivo na ordem inversa.</p>
+
+            <b>tac /exemplo/texto.txt</b>
+
+            <br>
+            <br>
+
+            <b>rm</b>
+            <p>Esse comando é usado para apagar arquivos, também pode ser usado para apagar diretórios e sub-diretórios vazios ou não.</p>
+
+            <p>Vamos apagar o arquivo teste.txt:</p>
+            <b>rm teste.txt</b>
+
+            <p>A opção -v mostra os arquivos que estão sendo apagados.</p>
+
+            <p>rm -v /teste</p>
+
+            <p>Dentro do diretório teste:</p>
+            <b>exemplo1.txt exemplo2.txt exemplo3.txt</b>
+
+            <p>A opção -r é usada para remover arquivos em sub-diretórios, esta opção também pode ser usada para remover sub-diretórios.</p>
+
+            <b>rm -r /teste</b>
+
+            <p>Dentro do diretório teste:</p>
+
+            <b>exemplo teste01.txt teste02.txt</b>
+
+            <br>
+            <br>
+
+            <b>cp</b>
+            <p>O comando cp é usado para copiar arquivos.</p>
+
+            <p>Copia o arquivo teste.txt para dentro do diretório /exemplo</p>
+
+            <b>cp teste.txt /exemplo</b>
+
+            <br>
+            <br>
+
+            <b>mv</b>
+            <p>O comando mv é usado para mover ou renomear arquivos e diretórios.</p>
+
+            <p>Renomea o arquivo teste.txt para teste1.txt</p>
+
+            <b>mv teste.txt teste1.txt</b>
+
+            <p>Move o arquivo teste.txt para o diretório /exemplo</p>
+
+            <b>mv teste.txt /exemplo</b>
+
+            <p><b>Coringas:</b></p>
+
+            <p>Os coringas são usados para definir um ou mais arquivos ou diretórios de uma só vez. Existem 4 tipos de coringas, são eles:</p>
+
+            <p>* - asterisco</p>
+            <p>? - ponto de interrogação</p>
+            <p>[ ] - colchetes</p>
+            <p>{ } - chaves</p>
+
+            <p>Os coringas são usados em conjunto com os comandos, por exemplo:</p>
+
+            <p>Vamos criar 5 arquivos: teste1.txt, teste2.txt, teste3.txt, teste4.txt e teste5.txt, você pode fazer isso de pelo menos duas formas:</p>
+
+            <p>Criando um arquivo de cada vez, usando o comando touch, por exemplo:</p>
+
+            <b>touch teste1.txt</b>
+            <b>touch teste2.txt</b>
+
+            <p>E assim por diante.</p>
+
+            <p>Também é possível criar os arquivos de outra forma bem mais eficiente, usando algum coringa, por exemplo:</p>
+
+            <b>touch teste{1,2,3,4,5}.txt</b>
+
+            <p>Agora, usamos o ls para ver os arquivos é… ai estão</p>
+
+            <p>Agora vamos listar somente os arquivos teste1.txt, teste2.txt e teste3.txt, para isso vamos usar o coringa [ ]</p>
+
+            <b>ls teste[1-3].txt</b>
+
+            <p>Legal, agora vamos criar mais dois arquivos, só que agora com a extensão .py</p>
+
+            <b>touch exemplo{6,7}.py</b>
+
+            <p>Vamos listar os arquivos que começam com exemplo e terminam com .py.</p>
+
+            <b>ls exemplo?.py</b>
+
+            <p>O ponto de interrogação (?) substitui um caractere no caso são os números 6 e 7.</p>
+
+            <p>Bem, agora vamos conhecer o último coringa.</p>
+
+            <p>Vamos listar os arquivos primeiro: <b>ls</b></p>
+
+            <p>Agora, vamos apagar todos os arquivos que terminam em .txt:</p>
+            <b>rm *.txt</b>
+
+            <p>O asterisco (*) faz referência a um nome completo de um arquivo ou diretório, pode ser lido como tudo.</p>
+
+            <p>No caso do exemplo, seria apague tudo que termine em .txt</p>
+
+            <h2>Comandos diversos:</h2>
+
+            <b>find</b>
+            <p>Quando o find é usado sozinho ele irá listar todos os arquivos, diretórios e subdiretórios inclusive os ocultos.</p>
+
+            <p>Agora, vamos procurar somente pelos arquivos do diretório exemplo</p>
+
+            <b>find / -name "*.txt"</b>
+
+            <p>A barra ( / ) significa que a busca pelos arquivos vai começar a partir do diretório raiz ( / ), o -name define o que deve ser procurado, no caso são os arquivos com a extensão .txt</p>
+
+            <p>Bem, agora vamos pesquisar novamente por arquivos com a extensão .txt</p>
+
+            <b>find . -name "*.txt"</b>
+
+            <p>Dessa vez a busca pelos arquivos vai começar a partir do diretório atual, é por isso que usamos o ponto (.)</p>
+
+            <p>Bem, agora vamos pesquisar pela palavra password, começando do diretório raiz</p>
+
+            <p>find / -name "password"</p>
+
+            <br>
+            <br>
+
+            <b>grep</b>
+            <p>O comando grep é usado para procurar por um padrão de caracteres específico.</p>
+
+            <p>Por exemplo, o seguinte comando vai pesquisar pela palavra backup no arquivo passwd que fica dentro do diretório /etc</p>
+
+            <b>grep backup /etc/passwd</b>
+
+            <p>Agora, vamos criar um arquivo chamado usuarios.txt</p>
+
+            <b>nano usuarios.txt</b>
+
+            <p>Dentro do arquivo vamos colocar os nomes:</p>
+
+            <p>Ricardo, João, Fernanda, Pedro, ricardo, joão, fernanda, pedro</p>
+
+            <p>Para salvar use as teclas: Ctrl + x depois pressione a tecla y e de enter</p>
+
+            <p>Vamos usar o cat para ver o conteúdo do arquivo:</p>
+
+            <b>cat usuarios.txt</b>
+
+            <p>Bem, quando pesquisamos pelo nome Ricardo</p>
+
+            <b>grep “Ricardo” usuarios.txt</b>
+
+            <p>Veja que só foi listado o nome Ricardo com o R maiúsculo, isso acontece porque o comando grep diferencia letras maiusculas de minusculas, para resolver isso se usa o opção -i</p>
+
+            <b>grep -i "Ricardo" usuarios.txt</b>
+
+            <p>Também é possível usar o grep com outros comandos usando o pipe ( | )</p>
+
+            <b>cat usuarios.txt | grep -i "Ricardo"</b>
+
+            <p>O pipe pega a saída do comando cat, que no caso é os nomes de usuários e passa como entrada para o comando grep, que faz a busca pelo nome Ricardo.</p>
+
+            <br>
+            <br>
+
+            <b>head</b>
+            <p>O comando head é usado para mostrar as linhas iniciais de um arquivo.</p>
+
+            <p>Vamos editar o arquivo usuarios.txt</p>
+
+            <p>1 - Ricardo
+                2 - João
+                3 - Fernanda
+                4 - Pedro
+                5 - Amanda
+                6 -
+                7 - ricardo
+                8 - joão
+                9 - fernanda
+                10 - pedro
+                11 - amanda
+            </p>
+
+            <b>head usuarios.txt</b>
+
+            <p>Agora, serão mostradas 11 linhas.</p>
+
+            <br>
+            <br>
+
+            <b>nl</b>
+            <p>O comando nl mostra o número de linhas e o conteúdo do arquivo.</p>
+
+            <p>Vamos criar o  arquivo texto</p>
+
+            <b>nano texto.txt</b>
+
+            <p>Dentro dele vamos digitar algumas letras: A B C D E F G H</p>
+
+            <p>Salve o arquivo: Ctrl + x + y + enter</p>
+
+            <b>nl -fn texto.txt</b>
+
+            <br>
+            <br>
+
+            <b>more</b>
+            <p>O comando more faz a paginação de arquivos e da entrada padrão.</p>
+
+            <p>O comando more é usado para visualizar arquivos de texto, exibindo uma tela por vez caso o arquivo seja grande. Ele é semelhante ao comando cat, mas exibe o conteúdo em páginas, tornando mais fácil para ler arquivos grandes. Por exemplo, quando exibimos o conteúdo de um arquivo com o cat ele mostra tudo de uma vez:</p>
+
+            <b>cat /etc/passwd</b>
+
+            <p>Mas quando usamos o more o conteúdo é dividido em partes:</p>
+            <b>more /etc/passwd</b>
+
+            <p>Para continuar vendo o conteúdo do arquivo pressione a tecla de espaço ou enter. Para sair pressione a tecla q.</p>
+
+            <p>Também, é possível usar o pipe ( | )</p>
+            <b>cat /etc/passwd | more</b>
+            <br>
+            <br>
+
+            <b>less</b>
+            <p>Esse comando faz a paginação de arquivos igual ao more, com a diferença de que o less permite voltar à página anterior, usando a tecla seta para cima e a seta para baixo para avançar.</p>
+            <b>less /etc/passwd</b>
+
+            <br>
+            <br>
+
+            <b>tail</b>
+            <p>O comando tail mostra as linhas finais de um arquivo. Por padrão, as 10 últimas linhas são mostradas caso não seja especificado o número de linhas a ser exibidas com a opção -n.</p>
+
+            <b>tail usuarios.txt</b>
+            <b>tail -n 11 usuarios.txt</b>
+
+            <br>
+            <br>
+
+            <b>time</b>
+            <p>O comando time mede o tempo que um processo (programa) leva para ser executado.</p>
+
+            <b>time find / -name passwd</b>
+
+            <p>Esse é o tempo gasto que o find leva para procurar pela palavra passwd.</p>
+
+            <b>echo</b>
+            <p>O comando echo é usado para mostrar mensagens na tela.</p>
+
+            <b>echo "Hacking"</b>
+
+            <br>
+            <br>
+
+            <b>wc</b>
+            <p>O comando wc mostra o número de palavras, bytes e linhas de um arquivo.</p>
+
+            <b>wc usuarios.txt</b>
+
+            <p>Para mostrar a quantidade de linhas se usa a opção -l</p>
+            <b>wc -l usuarios.txt</b>
+
+            <br>
+            <br>
+
+            <b>seq</b>
+            <p>O comando seq imprime uma sequência de números, os números podem ser inteiros ou reais (com pontos decimais).</p>
+
+            <b>seq 10</b>
+
+            <p>Vai imprimir do 1 ao 10 no terminal.</p>
+
+            <p>É possível especificar dois números, onde o primeiro vai ser o número que vai dar início a contagem é o segundo vai definir o número final:</p>
+            <b>seq 5 10</b>
+
+            <p>Vai imprimir na tela o número 5 até o 10.</p>
+
+            <p>Como você pode ver a sequência de números tem sido incrementada de 1 em 1, mas é possível definir o valor do incremento.</p>
+
+            <p>Por exemplo:</p>
+            <b>seq 3 0.5 10</b>
+
+            <p>Vai imprimir do número 3 até o 10 com o incremento de 0.5, ou seja vai de 3 até 10 com um aumentando de 0.5</p>
+
+            <p>Também é possível imprimir uma sequência para trás, basta usar um incremento negativo:</p>
+
+            <b>seq 5 -1 2</b>
+
+            <p>É possível definir um formato para ser impresso usando a opção -f</p>
+
+            <p>Por exemplo:</p>
+            <b>seq -f '##%g##' 1 5</b>
+
+            <p>Se tentarmos imprimir números com ponto flutuante, assim:</p>
+            <b>seq -f '## %g ##' 1.0 5.0</b>
+
+            <p>Não vai dar certo, porque é necessário usar o %f no lugar do %g</p>
+            <b>seq -f '##%f##' 1.0 5.0</b>
+
+            <p>Também é possível usar um caractere qualquer para separar os números usando a opção -s</p>
+            <b>seq -s ':' 4</b>
+
+            <br>
+            <br>
+
+            <b>cmp</b>
+            <p>Esse comando compara dois arquivos de qualquer tipo (texto ou binário).</p>
+
+            <p>Primeiro vamos criar um arquivo:</p>
+            <b>nano teste1.txt</b>
+
+            <p>Dentro dele vamos colocar:</p>
+            <b>Um exemplo</b>
+
+            <p>Salve o arquivo</p>
+
+            <p>Agora, vamos fazer uma cópia do arquivo:</p>
+            <b>cp teste1.txt teste2.txt</b>
+
+            <p>Vamos comparar os arquivos:</p>
+            <b>cmp teste1.txt teste2.txt</b>
+
+            <p>Veja que não é retornado nada</p>
+
+            <p>Agora, vamos adicionar a frase “Outro exemplo” no arquivo teste2.txt.</p>
+
+            <p>Vamos comparar os arquivos novamente:</p>
+            <b>cmp teste1.txt teste2.txt</b>
+
+            <p>Veja que agora é mostrado a linha onde está a diferença entre os arquivos.</p>
+
+            <p>Vamos agora fazer o teste com arquivos binários. Arquivos binários são gerados por um processo chamado de compilação.</p>
+
+            <p>Vou escrever um script simples na linguagem C, para mostrar como funciona o processo de compilação.</p>
+
+            <p>Bem, primeiro vamos criar um diretório com o nome scriptC</p>
+
+            <b>mkdir scriptC</b>
+
+            <p>Vamos entrar nele</p>
+            <b>cd scriptC</b>
+
+            <p>Agora vamos criar o arquivo hello.c</p>
+
+            <b>nano hello.c</b>
+
+            <p>Dentro do arquivo vou escrever um script que vai escrever no terminal a mensagem Hello World quando executado</p>
+
+            <div>
+                include <stdio.h>
+
+                    int main() { <br>
+                     printf("Hello World\n"); <br>
+                     return 0; <br>
+                    } <br>                  
+            </div>
+
+            <p>Salve o arquivo</p>
+            <p>Se tentarmos e executar o arquivo hello.c obteremos um erro. Isso acontece porque o arquivo precisa ser compilado primeiro. Para isso usaremos o gcc.</p>
+
+            <b>gcc hello.c -o hello</b>
+
+            <p>Esse comando irá produzir um arquivo executável com o nome hello.</p>
+
+            <p>Para executar o script basta digitar: <b>./hello</b></p>
+
+            <p>Veja que o arquivo hello.c é simplesmente o código que escrevemos: <b>cat hello.c</b></p>
+
+            <p>Já o arquivo hello tem esses caracteres que são incompreensíveis para nós humanos, isso porque os arquivos binários foram feitos para serem compreendidos pelo computador: <b>cat hello</b></p>
+
+            <p>Bem, agora vamos fazer uma cópia do arquivo hello.c</p>
+            <b>cp hello.c hello2.c</b>
+
+            <p>Vamos adicionar a frase Hi World no arquivo hello2.c</p>
+
+            <b>nano hello2.c</b>
+
+            <p>Salve o arquivo</p>
+            <p>Agora, é fazer a compilação:</p>
+
+            <b>gcc hello2.c -o hello2</b>
+
+            <p>Compilação feita. Podemos executar o script para testar:</p>
+
+            <b>./hello2</b>
+
+            <p>Bem, agora é fazer a comparação entre os binários hello e hello2</p>
+
+            <b>cmp hello hello2</b>
+
+            <br>
+            <br>
+
+            <b>diff</b>
+            <p>O comando diff também é usado para comparar dois arquivos.</p>
+
+            <p>Bem, a diferença entre o cmp e o diff é que o diff só compara arquivos texto.</p>
+            <b>diff -B -i teste1.txt teste2.txt</b>
+
+            <p>O diff vai fazer a comparação entre os arquivos teste1.txt e teste2.txt levando em consideração que a opção -B define que linhas em em branco devem ser ignoradas e a opção -i especifica que se deve ignorar diferenças entre letras maiúsculas e minúsculas.</p>
+
+            <p>Se usarmos o comando diff para fazer a comparação, não será retornada uma mensagem de erro, mas a mensagem não irá mostrar onde está a diferença entre os arquivos.</p>
+
+            <h2>Compactação e descompactação de arquivos:</h2>
+
+            <p>Fazer a compactação de arquivos é útil quando é necessário transferir vários arquivos, enviando assim só o arquivo compactado.</p>
+
+            <b>tar</b>
+            <p>O comando tar é usado para fazer a compactação e descompactação de arquivos. Os arquivos compactados com o tar normalmente ficam com a extensão .tar</p>
+
+            <p>Vamos compactar os arquivos usuarios.txt senhas.txt no arquivo dados.txt</p>
+            <b>tar -cf dados.tar usuarios.txt senhas.txt</b>
+
+            <p>A opção -c é usada para criar um novo arquivo .tar</p>
+
+            <p>Já a opção -f define o nome do arquivo, que no caso é dados.tar. Vamos ver se foi compactado os arquivos: <b>ls</b></p>
+
+            <p>Para descompactar o arquivo basta usar o -x no lugar do -c</p>
+
+            <b>tar -xf dados.tar</b>
+
+            <br>
+            <br>
+
+            <b>Manipulação de conta:</b>
+            <p>O Linux é um sistema multiusuário, ele permite que vários usuários usem simultaneamente o sistema, sem que haja conflitos entre eles.</p>
+
+            <p>O usuário mais poderoso do sistema é o root, ele não possui limitações e é responsável por gerenciar todo o sistema. O comando sudo dá acesso aos poderes do root, um uso comum do sudo é quando se precisa instalar um programa ou simplesmente atualizar todo o sistema.</p>
+
+            <p>Por exemplo, se tentarmos atualizar o sistema com o comando:</p>
+
+            <b>apt-get update</b>
+
+            <p>Recebemos um erro, pois é necessário ter permissão do usuário root, para resolver o erro basta usar o comando sudo na frente:</p>
+
+            <b>sudo apt-get update</b>
+
+            <p>Será necessário digitar a senha do usuário root, que no caso é kali já que eu estou usando o usuário padrão.</p>
+
+            <p>Aprenderemos ainda nesse vídeo mais sobre o comando apt-get.</p>
+
+            <p>A senha do usuário (padrão) root é: kali</p>
+
+            <br>
+            <br>
+
+            <b>Permissões de acesso:</b>
+
+            <p>As permissões de acesso servem para definir quem pode ler, escrever ou executar um arquivo ou diretório.</p>
+
+            <p>Para vermos quais permissões um arquivo tem, basta usar o: ls -l</p>
+
+            <p>O primeiro caractere que no caso é o d significa que é um diretório, os arquivos usam um traço ( - )</p>
+
+            <p>Os três próximos caracteres, que no caso é da segunda letra a quarta, indicam as permissões de acesso do dono do arquivo. O dono é o usuário que criou o arquivo.</p>
+
+            <p>Da quinta a sétima letra mostra as permissões de acesso do grupo. Um grupo são vários usuários diferentes que têm acesso ao mesmo arquivo.</p>
+
+            <p>Da oitava a décima letra mostra quais são as permissões de acesso para os outros usuários. Outros usuários são todos os que não são donos nem fazem parte de um grupo que tem acesso ao arquivo.</p>
+
+            <p>Bem, mas o que são essas letras?</p>
+
+            <p>A letra r (Read) simboliza a permissão de leitura para um arquivo, se for um diretório seria a permissão para listar o seu conteúdo usando o ls por exemplo.</p>
+
+            <p>A letra w (Write) representa a permissão de escrita ou gravação, ou seja, permite criar ou alterar o conteúdo de um arquivo.</p>
+
+            <p>A letra x (Execute) simboliza a permissão de execução de um arquivo, por exemplo executar um script, se for um diretório permite o uso do comando cd.</p>
+
+            <p>O traço ( - ) significa que não se tem permissão.</p>
+
+            <p>Um arquivo pode ter três tipos de usuários:</p>
+
+            <p>Dono: é o usuário que criou o arquivo.</p>
+
+            <p>Grupo: Um grupo permite que vários usuários diferentes tenham acesso ao mesmo arquivo.</p>
+
+            <p>Outros: Todos os usuários que não são donos nem fazem parte de um grupo que tem acesso ao arquivo.</p>
+
+            <p>Entender as permissões de arquivos é muito importante para fazer a escalação de privilégios.</p>
+
+            <b>chmod</b>
+            <p>O comando usado para definir as permissões é o chmod. Ele pode alterar as permissões do grupo e dos outros usuários. Para mudar o dono do arquivo se usa o comando chown.</p>
+
+            <p>Para usar o chmod é necessário especificar três perguntas:</p>
+
+            <p>Primeiro: para quem está sendo atribuído às permissõe; Segunda: que mudanças estão sendo feitas, está adicionando ou removendo permissões; E terceira: qual permissão está sendo modificada</p>
+
+            <p>Parece complexo, né?, mas não se preocupe, com os exemplos tudo ficará mais claro.</p>
+
+            <p>Para usar o chmod é necessário especificar três perguntas:</p>
+
+            <p>Primeiro: para quem está sendo atribuído às permissões; No caso, está sendo atribuído para o arquivo usuarios.txt. Segunda: que mudanças estão sendo feitas, está adicionando ou removendo permissões; No caso, estamos removendo. E terceira: qual permissão está sendo modificada. No caso, estamos removendo a permissão de leitura.</p>
+
+            <p>Existem duas formas de se alterar as permissões, usando o modo literal (simbólico) ou o  modo octal.</p>
+
+            <p>Primeiro vamos ver o modo literal.</p>
+
+            <p>Para responder a primeira pergunta do chmod usando o modo literal, usamos os valores:</p>
+
+            <p>u : representa o dono do arquivo.</p>
+            <p>g : representa o grupo.</p>
+            <p>o : representa os outros usuários.</p>
+            <p>a : representa todos os itens citados anteriormente.</p>
+
+            <p>Para responder a segunda pergunta, usamos os valores:</p>
+            <p>- : o sinal de subtração é usado para remover permissão.</p>
+            <p>+ : o sinal de adição é usado para adicionar uma permissão sem remover a existente.</p>
+            <p>= : o sinal de igual é usado para adicionar uma permissão e remover a existente.</p>
+
+            <p>Para responder a terceira pergunta usamos os valores que vimos anteriormente:</p>
+
+            <p>r : representa a permissão de leitura.</p>
+            <p>w : representa a permissão de escrita.</p>
+            <p>x : representa a permissão de execução.</p>
+
+            <p>É possível ver as permissões usando a interface gráfica.</p>
+
+            <p>Agora vamos ver alguns exemplos:</p>
+
+            <p>Primeiro, vamos criar o arquivo usuarios.txt</p>
+
+            <p>Dentro dele, vamos colocar</p>
+
+            <p>Ricardo : senha 1234</p>
+            <p>João : senha 9043</p>
+
+            <p>Salve o arquivo.</p>
+
+            <p>Vamos ver as permissões e o conteúdo do arquivo: <b>ls -l</b></p>
+
+            <b>cat usuarios.txt</b>
+
+            <p>Agora, vamos impedir que não seja possível ler o conteúdo do arquivo:</p>
+
+            <b>chmod u-r,g-r,o-r usuarios.txt </b>
+
+            <p>Agora, se vermos novamente as permissões do arquivo, veremos que foram removidas: <b>ls -l</b></p>
+
+            <p>Se tentarmos vermos o conteúdo do arquivo:</p>
+            <b>cat usuarios.txt</b>
+
+            <p>Receberemos uma mensagem dizendo que a permissão foi negada.</p>
+
+            <p>Agora, vamos dar a permissão de leitura novamente:</p>
+            <b>chmod ugo+r usuarios.txt</b>
+
+            <br>
+            <br>
+
+            <b>Modo octal</b>
+            <p>É possível alterar as permissões usando o modo octal, que é basicamente usar números no lugar das letras.</p>
+
+            <p>O número 4 representa a permissão de leitura (r).</p>
+            <p>O número 2 representa a permissão de escrita (w).</p>
+            <p>O número 1 representa a permissão de execução (x).</p>
+
+            <p>É possível fazer a soma dos números para atribuir mais de uma permissão por vez. Por exemplo, para um arquivo ter permissão de leitura, escrita e execução, você usa a soma de 4 + 2 + 1 que dá 7.</p>
+
+            <p>Vamos fazer o mesmo exemplo de antes, só que dessa vez usando números:</p>
+            <b>chmod -444 usuarios.txt</b>
+
+            <p>Agora, se tentarmos ver o conteúdo do arquivo, obteremos o mesmo erro de permissão negada de antes.</p>
+
+            <br>
+            <br>
+
+            <p>adduser</p>
+            <p>Esse comando é usado para criar um novo usuário ou grupo.</p>
+
+            <p>Vamos criar o usuário Ricardo, com a senha 2194</p>
+
+            <b>sudo adduser ricardo</b>
+
+            <p>Por padrão quando o usuário é criado o nome do grupo fica igual ao do usuário, é possível mudar isso, mas não entraremos em detalhes agora.</p>
+
+            <p>O comando sudo é usado para executar um comando como superusuário, ou seja, como root. Por padrão, quando se usa o sudo é necessário digitar a senha do usuário que se está usando, no caso, estamos usando o usuário padrão, que é o kali, que tem como senha kali.</p>
+
+            <p>Por exemplo, quando tentamos ver o conteúdo do arquivo shadow, recebemos uma mensagem informando que não temos permissão para acessar o arquivo.</p>
+
+            <p>O arquivo /etc/shadow é um arquivo de texto que contém informações sobre as senhas dos usuários do sistema.</p>
+            <b>cat /etc/shadow</b>
+
+            <p>Agora, se usarmos o comando sudo na frente:</p>
+            <b>sudo cat /etc/shadow</b>
+
+            <p>Conseguimos ver o que tem dentro do arquivo.</p>
+
+            <p>Perceba que quando usamos o comando sudo, após o comando ser executado perdemos o privilégio do root.</p>
+
+            <p>Para mudar isso, podemos acessar o usuário root de forma permanente usando:</p>
+            <b>sudo su</b>
+
+            <p>Agora para executarmos qualquer comando que precise de privilégios do root não é necessário usar mais o sudo na frente.</p>
+
+            <p>Por exemplo:</p>
+            <b>cat /etc/shadow</b>
+            
+            <p>Não é recomendado usar o usuário root a todo tempo, por questões de segurança, pois você pode acabar executando algum comando que prejudique o sistema operacional.</p>
+
+            <p>Para sair do usuário root basta usar o comando: <b>exit</b></p>
+
+            <br>
+            <br>
+
+            <b>Baixando e instalando programas:</b>
+            <p>Agora, vamos aprender como baixar e instalar programas usando a linha de comando.</p>
+
+            <b>apt</b>
+            <p>O apt é uma ferramenta de linha de comando usada para gerenciar pacotes das distribuições Linux.</p>
+
+            <p>Mas, o que eu quero dizer com gerenciar pacotes?</p>
+
+            <p>Quando eu falo gerenciar pacotes me refiro a atualizar, instalar, configurar e remover programas. Os programas podem ser ferramentas como o Nmap, SQLmap, ou uma linguagem de programação como o Python.</p>
+
+            <b>As principais opções do apt são:</b>
+
+            <p>Para  atualizar a lista de pacotes disponíveis use:</p>
+            <b>apt update</b>
+
+            <p>O comando apt update atualiza a lista de pacotes para pegar as atualizações disponíveis nos repositórios que estão listados em /etc/apt/sources.list.</p>
+
+            <p>Para instalar as atualizações que estão na lista use o comando:</p>
+            <b>apt upgrade</b>
+            <p>O comando apt upgrade instala a versão mais recente de todos os pacotes.</p>
+
+            <p>A lista com as versões fica em  /etc/apt/sources.list, nessa lista fica as fontes de onde serão baixados os programas, e também será usado para buscar por atualizações.</p>
+
+            <p>É recomendado que se use o apt update antes de se usar o apt upgrade, pois assim você atualiza a lista com as versões mais recentes para serem instaladas.</p>
+
+            <p>Para instalar um pacote ou programa use: <b>apt install pacote</b></p>
+
+            <p>Vamos fazer um exemplo, iremos instalar a linguagem Python: <b>apt install python</b></p>
+
+            <p>Agora, podemos ver se a instalação foi bem sucedida: <b>python --version</b></p>
+
+            <p>Para remover um programa do sistema se usa: <b>apt remove pacote</b></p>
+
+            <p>Por exemplo para remover o python use: <b>apt remove python</b></p>
+
+            <br>
+            <br>
+
+            <b>wget</b>
+            <p>Outra forma de baixar algo é usando o wget. Por exemplo, vamos baixar a página do Kali Linux:</p>
+            <b>wget https://nmap.org/</b>
+
+            <p>Vou entrar em detalhes sobre como fazer uma cópia de um site quando falarmos de desenvolvimento web.</p>
+
+            <b>git clone</b>
+            <p>O git clone é usado para clonar um repositório do GitHub. O git clone não é um comando do Linux, ele é um comando do Git, que é um sistema de controle de versão distribuído, usado principalmente para desenvolvimento de software.</p>
+
+            <p>Bem, o Git possui vários outros comandos que vou mostrar futuramente. Por enquanto, vou dar um exemplo do uso do git clone:</p>
+
+            <p>O repositório que vamos clonar é o da ferramenta Sublist3r:</p>
+
+            <b>git clone https://github.com/aboul3la/Sublist3r.git</b>
+
+            <p>Agora podemos testar a ferramenta.</p>
+            <b>sublist3r -d kali.org</b>
+
+            <p>Esse comando vai procurar por subdominios do kali.org</p>
+
+            <p>Vamos aprender mais sobre o sublist3r e outras ferramentas em uma outra aula, e também aprenderemos a construir nossas próprias ferramentas.</p>
+
+            <br>
+            <br>
+
+            <b>Arquitetura do Linux</b>
+
+            <p>A arquitetura do linux pode ser subdividida em: Hardware; Kernel; Biblioteca de funções padrão; Shell; Aplicações</p>
+
+            <p>O hardware é o componente que representa a camada física, por exemplo o disco rígido, CPU, etc.</p>
+
+            <p>O kernel é o responsável pela interface entre o hardware e as aplicações, o kernel é responsável por gerenciar os recursos disponíveis, por exemplo gerenciar a memória.</p>
+
+            <p>A biblioteca de função padrão é a responsável por permitir o acesso a recursos através da execução de chamadas feitas por processos. Algumas funções padrão são a open, read, write e close.</p>
+
+            <p>Assim como eu falei no início do artigo, a Shell é a responsável por executar os comandos fornecidos pelo usuário.</p>
+
+            <p>A camada de aplicações é a que está mais próxima do usuário, alguns exemplos são, navegadores, gerenciador de arquivos, etc.</p>
+
+            <p>Ao longo do curso vou mostrar outros comandos, como por exemplo, na aula sobre redes vou ensinar os principais comandos do linux relacionados a isso, o objetivo dessa aula é dar a você uma noção de como mexer em uma distribuição Linux.</p>
+            
+            <p>Espero que tenham gostado e aprendido algo novo hoje. Até o próximo artigo!!</p>
+
+        </main>
+
+        <footer>
+            <span><a href="https://www.youtube.com/@ScriptBr101">Autor: ScriptBr 101</a></span>
+        </footer>
+    </body>
+</html>
