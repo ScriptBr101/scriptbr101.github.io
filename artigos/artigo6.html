@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Redes de computadores</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Um blog com objetivo de compartilhar conhecimento e experiências sobre Hacking, Linux, Programação, Python, Segurança e muitos outros assuntos.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/962722a01a.js" crossorigin="anonymous"></script>
+        <style>
+
+            * {
+                font-family: "Roboto Regular", sans-serif;
+                box-sizing: border-box;
+            }
+
+            header {
+                margin: 20px;
+                padding: 20px;
+                border-bottom: 1px solid black;
+                width: 50%;
+            }
+
+            main {
+                display: grid;
+                width: 60%;
+                margin: auto;
+            }
+
+            p {
+                font-size: 17px;
+            }
+
+            a {
+                color: black;
+                text-decoration: none;
+            }
+
+            span {
+               margin: 5px;
+            }
+
+            i {
+                font-size: 22px;
+            }
+
+            li {
+                padding: 4px;
+            }
+
+            .link {
+                color: green;
+            }
+
+            footer {
+                margin: 14px;
+                padding: 10px;
+                border-top: 1px solid black;
+                width: 20%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">ScriptBr 101</a></h1>
+            <span><a href="https://www.youtube.com/@ScriptBr101"><i class="fab fa-youtube"></i></a></span>
+
+            <span><a href="https://www.instagram.com/scriptbr101/"><i class="fab fa-instagram"></i></a></span>
+        </header>
+
+        <main>
+            <h1>Redes de computadores</h1>
+
+            <p>No artigo de hoje irei falar sobre redes de computadores com foco em segurança cibernética. Basicamente, irei falar sobre o modelo OSI é o modelo TCP/IP, isso com o objetivo de explicar como os dispositivos se comunicam, falarei também sobre algumas vulnerabilidades relacionadas a redes de computadores, mas não vou me aprofundar nisso hoje.</p>
+
+            <p>Eu irei abordar o modelo OSI de forma teórica, mas no modelo TCP/IP irei mostrar de forma mais prática, para isso eu usarei o wireshark, alguns scripts em python e php o burp suite é o nmap. O tempo do vídeo está na descrição, caso você queira ver algo em específico no vídeo, mas de qualquer forma eu recomendo que assista ele por inteiro, por fim, só gostaria de avisar que peguei várias definições e exemplos de alguns livros e artigos, todos eles foram referenciados caso você queira ler por inteiro o texto.</p>
+
+            <h2>Como os dispositivos se comunicam? (OSI, TCP/IP)</h2>
+
+            <p>A comunicação entre os dispositivos é feita de várias formas, por exemplo, os dispositivos podem se comunicar usando algum tipo de rede, como por exemplo a internet, ou usando protocolos como o Bluetooth que não usa uma rede externa para se comunicar, mas sim o próprio protocolo para estabelecer a conexão entre os dispositivos. Em ambos os casos, a comunicação entre os dispositivos está vulnerável, podendo assim ser explorada por alguém. No caso do protocolo Bluetooth, uma vulnerabilidade bem interessante é a BlueBorne. Essa vulnerabilidade permite que um hacker assuma o controle de qualquer dispositivo que use o Bluetooth. Ao explorar essa vulnerabilidade com sucesso o hacker pode roubar dados do dispositivo, espalhar malware e até criar grandes botnets. Vou colocar na descrição do vídeo um artigo explicando em mais detalhes essa vulnerabilidade.</p>
+
+            <a href="https://www.armis.com/research/blueborne/">Link do artigo explicando a vulnerabilidade BlueBorne</a> <br>
+
+            <p>Neste artigo, eu vou focar em explicar como a internet funciona e os principais protocolos usados e os ataques relacionados a eles.</p>
+
+            <b>O que é a internet?</b>
+
+            <p>Vamos começar definindo o que é a internet. Segundo o livro “Redes de computadores e a internet uma abordagem top-down”: “A Internet é uma rede de computadores que interconecta centenas de milhões de dispositivos de computação ao redor do mundo.”</p>
+
+            <b>O que é um protocolo?</b>
+
+            <p>Anteriormente eu falei sobre o protocolo Bluetooth, mas qual é a definição de um protocolo? Um protocolo é simplesmente um conjunto de regras que definem como os dispositivos devem se comunicar. Pense em um protocolo como uma linguagem que os dispositivos (computadores) usam para se comunicar, mesmo que os dispositivos sejam diferentes. Existem vários protocolos, é cada um tem um propósito específico, por exemplo: Um dos principais protocolos usados na internet é o HTTP (Hypertext Transfer Protocol). O e-mail usa os protocolos SMTP (Simple Mail Transfer Protocol), POP3 (Post Office Protocol — versão 3) ou o IMAP (Internet Message Access Protocol). Para que os dispositivos (computadores) se comuniquem eles têm que usar os mesmos protocolos. E assim como o protocolo Bluetooth cada protocolo tem as suas vulnerabilidades, eu irei mostrar alguns exemplos em breve. Mas, antes precisamos entender o modelo OSI e o modelo TCP/IP.</p>
+
+            <b>Modelo OSI</b>
+
+            <p>O modelo OSI (Open System Interconnection) é um modelo conceitual usado para descrever como os computadores se comunicam através de uma rede (eu falo computador, mas, entenda como qualquer dispositivo, tipo um celular ou tablet).</p>
+
+            <p>O modelo OSI é dividido em sete camadas, e cada camada tem uma função específica.</p>
+
+            <p>As setes camadas do modelo OSI pode ser dividida em dois subconjuntos: Data Flow Layers - 4 camadas inferiores e Application Layers - 3 camadas superiores.</p>
+
+            <p>As 4 camadas inferiores são responsáveis por controlar as funções de rede, por exemplo, oferecer serviços de transferência de dados. Já as 3 camadas superiores são responsáveis pelas funções específicas das aplicações.</p>
+
+            <p>Outros livros como o do Gabriel Torres, separa as camadas do modelo OSI em 3 grupos: Aplicação; Transporte; Rede</p>
+
+            <p>A diferença da separação dos grupos do Gabriel Torres, é que ele não considera a camada de transporte como pertencente ao grupo das camadas inferiores, que no caso da imagem do seu livro são o grupo de Rede.</p>
+
+            <p>Então, agora você deve estar se perguntando qual é a definição correta? A resposta é bem simples, tanto faz qual a separação de grupo, o importante é entender o que cada camada faz e como elas se comunicam. É exatamente isso que veremos agora.</p>
+
+            <b>Camada de aplicação - camada 7</b>
+
+            <p>“A camada de aplicação faz a interface entre a pilha de protocolos e o aplicativo que pediu ou receberá a informação através da rede. Por exemplo, se você quiser baixar o seu e-mail com seu aplicativo de e-mail, ele entrará em contato com a camada de aplicação da pilha de protocolos de rede sendo usada, efetuando este pedido.”</p>
+
+            <p>Na minha definição, a camada de aplicação é simplesmente a camada responsável por consumir os dados, afinal de contas é nessa camada que temos o protocolo HTTP que permite acessar sites, o protocolo SMTP usado na transferência de e-mail, entre outros protocolos que veremos futuramente.</p>
+
+            <b>Camada de Apresentação - camada 6</b>
+
+            <p>O livro “Arquitetura e Protocolos de Rede TCP-IP” (ELIAS; G.; LOBATO, L. C. Arquitetura e Protocolos de Rede TCP-IP. Rio de Janeiro: Escola Superior de Redes, RNP, 2013.) define a camada de apresentação da seguinte forma:</p>
+
+            <p>“A camada de apresentação, também chamada de camada de tradução, converte o formato do dado recebido pela camada de aplicação em um formato comum a ser usado na transmissão desse dado, ou seja, um formato entendido pelo protocolo usado. Um exemplo comum é a conversão do padrão de caracteres (código de página) quando o dispositivo transmissor usa um padrão diferente do padrão ASCII (American Standard Code for Information Interchange), padrão muito usado em todo o mundo. Podem existir outros usos, como compressão de dados e criptografia.”</p>
+
+            <p>De forma simples, a camada de apresentação é responsável pela tradução, criptografia e compactação dos dados recebidos da camada de aplicação. A transmissão dos dados ficará mais rápida já que os dados foram comprimidos.</p>
+
+
+            <b>Camada de Sessão - camada 5</b>
+
+            <p>Eu vou pegar a definição do livro do Gabriel Torres, ele diz o seguinte:</p>
+
+            <p>“A camada de sessão permite que duas aplicações em computadores diferentes estabeleçam uma sessão de comunicação. Nesta sessão, essas aplicações definem como será feita a transmissão de dados e coloca marcações nos dados que estão sendo transmitidos. Se porventura a rede falhar, os computadores reiniciam a transmissão dos dados a partir da última marcação recebida pelo computador receptor. Por exemplo, você está baixando e-mails de um servidor de e-mails e a rede falha. Quando a rede voltar a estar operacional, a sua tarefa continuará do ponto em que parou, não sendo necessário reiniciá-la (a pilha de protocolos têm de implementar este recurso para que o exemplo dado funcione).”</p>
+
+            <p>Ok. Com essa definição podemos concluir que a camada de sessão é responsável por estabelecer e encerrar a conexão entre os dispositivos que estão se comunicando.</p>
+
+            <b>Camada de Transporte - camada 4</b>
+
+            <p>“A camada de transporte é responsável por pegar os dados enviados pela camada de sessão e dividi-los em pacotes de dados (nesta camada, pacotes de dados são chamados segmento de dados) que serão repassados para a camada abaixo dela, rede. No receptor, a camada de transporte é responsável por pegar os pacotes de dados recebidos da camada de rede e remontar os segmentos de dados originais para enviá-los à camada de sessão, verificando para qual protocolo operando acima da camada de transporte os dados devem ser entregues – pois é possível termos vários protocolos operando simultaneamente acima desta camada. Por exemplo, você pode estar baixando seus e-mails e navegando na Internet ao mesmo tempo e, portanto, esta camada tem de saber para onde enviar os dados recebidos.”</p>
+
+            <b>Camada de Rede - camada 3</b>
+
+            <p>“A camada de rede é responsável pelo endereçamento lógico dos pacotes de dados e também pela tradução de endereços lógicos em endereços físicos. Pacotes de dados podem ter prioridades diferentes. Por exemplo, você não terá qualquer problema em ter um e-mail com atraso de um ou dois segundos, mas se o mesmo atraso ocorrer em um pacote de dados contendo voz e/ou imagens de uma videoconferência você com certeza ficará chateado. Esta camada é responsável por priorizar a entrega de determinados pacotes de dados (recurso também conhecido como qualidade de serviço ou QoS).”</p>
+
+            <p>Falando de forma resumida, a camada de rede controla o roteamento entre o dispositivo de origem e o dispositivo de destino do pacote.</p>
+
+            <b>Camada de Enlace - camada 2</b>
+
+            <p>O Gabriel Torres definiu a camada 2 da seguinte forma:</p>
+
+            <p>“A camada de link de dados (também chamada camada de enlace) pega os pacotes de dados recebidos da camada de rede e os transforma em quadros ou células que serão trafegados pela rede, adicionando informações como o endereço da placa de rede de origem, o endereço da placa de rede de destino, dados de controle, os dados em si e dados de correção de erro (checksum ou CRC). A diferença entre quadro e célula é que o quadro possui um tamanho configurável, enquanto que a célula possui sempre o mesmo tamanho.”</p>
+
+            <p>O livro destaca que:</p>
+            <p>“Esta camada é ainda responsável por verificar se o meio onde os quadros serão transmitidos está disponível e pode ser usado.”</p>
+
+            <b>Camada Física - camada 1</b>
+            <p>O livro do Gabriel torres define a camada 1 da seguinte forma:</p>
+
+            <p>“A camada física pega os quadros enviados pela camada de enlace e efetua a codificação de modulação do quadro, transmitindo o quadro através de sinais elétricos, luminosos ou de radiofrequência, dependendo se a rede usa cabos metálicos, fibra óptica ou é do tipo sem fio, respectivamente.”</p>
+
+            <p>Agora que você já tem uma noção básica do modelo OSI, eu quero destacar algumas coisas, por exemplo:</p>
+
+            <p>1 - Cada camada recebe e envia requisições à camada imediatamente superior ou inferior e se comunica com a mesma camada em outro host.</p>
+
+            <p>2 - Uma camada não oferece serviços suportados por outra camada.</p>
+
+            <p>3 - Cada camada possui uma forma de identificação (endereçamento) de seus próprios dados que, por sua vez, encapsulam dados das camadas superiores.</p>
+
+            <p>Cada camada identifica os dados com informações de uma forma, isso é chamado de PDU (Protocol Data Unit):</p>
+
+            <p>O PDU da camada de aplicação, apresentação e sessão chama-se dados.</p>
+
+            <p>O PDU da camada de transporte chama-se segmento.</p>
+
+            <p>O PDU da camada de rede chama-se pacote</p>
+
+            <p>O PDU da camada de enlace chama-se quadro.</p>
+
+            <p>O PDU da camada física chama-se bits.</p>
+
+            <p>Vou falar um pouco mais sobre o processo de encapsulamento de dados, para isso vou pegar a definição do livro do Gabriel Torres.</p>
+
+            <b>Encapsulamento de dados</b>
+
+            <p>No seu livro o Gabriel Torres disse o seguinte: “Na transmissão de um dado, cada camada pega as informações passadas pela camada superior, acrescenta informações pelas quais ela seja responsável e passa os dados para a camada imediatamente inferior. Esse processo é conhecido como encapsulamento.”</p>
+
+            <p>Vou falar um exemplo para deixar mais compreensível. Vamos imaginar que você vai acessar o site www.exemplo.com, quando você faz isso, são gerados dados, é esses dados passam por todas as camadas do modelo OSI e em cada camada que ele passa é adicionado informações que são de responsabilidade da camada. Por exemplo:</p>
+
+            <b>Camada 7</b>
+            <p>Na camada de aplicação serão gerados os dados, no caso é feita uma solicitação para acessar o site www.exemplo.com</p>
+
+            <b>Camada 6</b>
+            <p>Na camada 6, a camada de apresentação, a solicitação é codificada ou criptografada para ser transmitida pela rede.</p>
+
+            <b>Camada 5</b>
+            <p>Na camada de sessão, é estabelecida uma conexão entre o dispositivo (computador) que está fazendo a solicitação e o servidor que hospeda o site, é então a solicitação e passada para a camada 4.</p>
+
+            <b>Camada 4</b>
+            <p>Na camada de transporte, camada 4, onde a solicitação é dividida em segmentos e é adicionado um cabeçalho especificando a porta de origem e destino, o transporte normalmente é feito usando o protocolo TCP ou o UDP.</p>
+
+            <b>Camada 3</b>
+            <p>Na camada de rede, os segmentos são divididos em pacotes e é adicionado mais um cabeçalho, dessa vez com o IP de origem e destino.</p>
+
+            <b>Camada 2</b>
+            <p>Na camada de enlace, os pacotes agora são chamados de quadro, é eles passam por uma verificação, para ver se possuem algum erro, novamente é adicionado mais um cabeçalho, com o endereço MAC de origem e destino.</p>
+
+            <b>Camada 1</b>
+            <p>Na camada 1, a camada física, os quadros são convertidos em sinais elétricos ou ópticos que são transmitidos através de cabos de rede ou sinais de rádio até o servidor que hospeda o site.</p>
+
+            <p>Quando os bits chegarem no seu destino, o dispositivo receptor fará o processo inverso do encapsulamento. Lembrando que cada camada só se comunica com a mesma camada do outro dispositivo, ou seja, a camada de aplicação do dispositivo que fez a solicitação só irá se comunicar com a camada de aplicação do dispositivo que irá receber a solicitação.</p>
+
+            <p>Agora, vou falar sobre o modelo TCP/IP e mostrar alguns scripts em Python que demonstram o seu uso de forma prática.</p>
+
+            <b>Modelo TCP/IP</b>
+            <p>O modelo TCP/IP é um conjunto de protocolos que torna possível a comunicação entre diferentes dispositivos. O modelo TCP/IP tem esse nome por causa de dois protocolos, o TCP que é usado na transmissão de dados é o protocolo IP que é responsável por identificar os dispositivos. Veremos mais sobre esses protocolos em breve.</p>
+
+            <p>Em alguns livros o modelo TCP/IP é definido como tendo 4 camadas, que é o caso do livro do Gabriel Torres, já em outros como o Redes de computadores uma abordagem top-down define o modelo TCP/IP como tendo 5 camadas.</p>
+
+            <p>Nesse artigo eu irei considerar o modelo TCP/IP como tendo 5 camadas. Vou continuar pegando as definições de alguns livros e vou fazer alguns comentários sobre.</p>
+
+            <b>Camada de Aplicação - TCP/IP</b>
+            <p>O livro “Redes de computadores uma abordagem top-down” define a camada de aplicação da seguinte forma: “A camada de aplicação é onde residem aplicações de rede e seus protocolos. A camada de aplicação da Internet inclui muitos protocolos, tais como o HTTP (que provê requisição e transferência de documentos pela Web), o SMTP (que provê transferência de mensagens de correio eletrônico) e o FTP (que provê a transferência de arquivos entre dois sistemas finais).”</p>
+
+            <p>A camada de aplicação se comunica com a camada de Transporte usando portas, que de forma simples são o “endereço” onde deve ser entregue o pacote. A camada de Aplicação do modelo TCP/IP equivale às camadas de Aplicação, Apresentação e Sessão do modelo OSI. Por isso a sua definição e protocolos usados são muito semelhantes.</p>
+
+            <b>Principais protocolos da camada de aplicação - TCP/IP</b>
+
+            <p>1 - HTTP (Hypertext Transfer Protocol): é usado para transferir dados entre o navegador e o servidor onde o site está hospedado.</p>
+
+            <p>2 - SMTP (Simple Mail Transfer Protocol): é usado para transferir e-mails através da internet.</p>
+
+            <p>3 - DNS (Domain Name System): é usado para converter os nomes de domínio em endereços IP.</p>
+
+            <p>4 - SSH (Secure Shell): é um protocolo que permite acessar um computador remotamente de forma segura.</p>
+
+            <p>5 - FTP (File Transfer Protocol): é um protocolo usado para transferência de arquivos.</p>
+
+            <p>Agora, eu vou definir em mais detalhes alguns dos protocolos citados anteriormente.</p>
+
+            <b>HTTP</b>
+
+            <p>Segundo o site da <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP">Developer Mozilla</a>: “Hypertext Transfer Protocol (HTTP) é um protocolo de camada de aplicação para transmissão de documentos hipermídia, como o HTML. Foi desenvolvido para comunicação entre navegadores web e servidores web, porém pode ser utilizado para outros propósitos também. Segue um modelo cliente-servidor clássico, onde um cliente abre uma conexão, executa uma requisição e espera até receber uma resposta. É também um protocolo sem estado ou stateless protocol, que significa que o servidor não mantém nenhum dado entre duas requisições (state). Apesar de ser frequentemente baseado em uma camada TCP/IP, pode ser utilizado em qualquer camada de transporte confiável, ou seja, um protocolo que não perde mensagens silenciosamente como o UDP.”</p>
+
+            <p>Normalmente os sites usam o protocolo HTTPS, por ser mais seguro.</p>
+
+            <b>HTTPS</b>
+            <p>O protocolo HTTPS é simplesmente o protocolo HTTP com criptografia, no caso o HTTPS usa outro protocolo para criptografar a comunicação, é usado o protocolo TLS (Transport Layer Security), anteriormente era usado o SSL (Secure Sockets Layer). Para proteger a comunicação o HTTPS usa a criptografia de chave pública também chamada de criptografia assimétrica.</p>
+
+            <b>Cliente-Servidor</b>
+            <p>A arquitetura cliente-servidor refere-se à forma como os dispositivos em uma rede se comunicam. Essa arquitetura é baseada em requisições e respostas, e isso faz com que ela seja usada para fazer a comunicação da web. Por exemplo, quando você acessa o site exemplo.com, o navegador (que é o cliente), faz uma solicitação ao servidor, essa solicitação é chamada de request e o servidor responde enviando o conteúdo pedido pelo navegador, que no caso é o conteúdo do site, a resposta que o servidor envia é chamada de response.</p>
+
+            <p>Assim como eu falei antes, a comunicação entre o cliente e o servidor do site será feita usando o protocolo HTTP.</p>
+
+            <b>Cabeçalhos HTTP</b>
+            <p>“Os cabeçalhos HTTP permitem que o cliente e o servidor passem informações adicionais com a solicitação ou a resposta HTTP. Um cabeçalho de solicitação é composto por seu nome case-insensitive (não diferencia letras maiúsculas e minúsculas), seguido por dois pontos ':' e pelo seu valor (sem quebras de linha). Espaços em branco antes do valor serão ignorados.” <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Headers">Link da fonte</a></p>
+
+            <p>Vamos ver na prática um cabeçalho HTTP, para isso vamos acessar o site kali.org e inspecionar o código-fonte da página, agora vamos acessar a opção network. Veja, o navegador está fazendo uma requisição para o servidor.</p>
+
+            <b>Burp Suite</b>
+            <p>Outra forma de ver a requisição que um site faz e a resposta que o servidor envia é usando um proxy, como o Burp Suite. Ele é uma ferramenta com diversas funcionalidades, como por exemplo, Burp Spider, Burp Proxy, Burp Scanner, Burp Repetidor. Nesse artigo eu não irei mostrar como fazer a instalação do Burp Suite e nem irei entrar em detalhes sobre suas funcionalidades, falarei mais sobre ele na aula de Pentest.</p>
+
+            <p>A funcionalidade do Burp Suite que nos interessa nesse vídeo é o Burp proxy, então, primeiro vou explicar o que é um proxy.</p>
+
+            <b>O que é um Proxy?</b>
+            <p>Um proxy é um servidor que fica entre o usuário e a internet. Por exemplo, vamos supor que você quer acessar o site exemplo.com, se você não estiver usando um servidor proxy, o navegador irá enviar a requisição diretamente para o servidor do site, e o site irá enviar a resposta diretamente para o seu navegador. Mas, se você usar um proxy, o seu navegador irá enviar a requisição para o servidor proxy, é será o servidor proxy que irá enviar a requisição e receber a resposta do servidor do site. Sendo assim, o endereço IP que ficará registrado no servidor do site será o endereço IP do proxy, não o seu. Um servidor proxy adiciona uma camada de anonimato, mas é uma camada frágil, pois existem métodos para descobrir o endereço real de quem está acessando o site, mas isso é assunto para outro vídeo, onde falarei só sobre anonimato. Existem diversos tipos de proxy, como Proxy de cache, Proxy de web, Proxy de anonimato, Proxy de filtragem de conteúdo, Proxy interceptador, entre outros.</p>
+
+            <p>O proxy do Burp Suite é usado para interceptar o tráfego entre o navegador e a aplicação alvo. Ao fazer isso, é possível inspecionar ou modificar o tráfego que passa entre o navegador e a aplicação.</p>
+
+            <b>Métodos de requisição HTTP</b>
+            <p>“O protocolo HTTP define um conjunto de métodos de requisição responsáveis por indicar a ação a ser executada para um dado recurso. Embora esses métodos possam ser descritos como substantivos, eles também são comumente referenciados como HTTP Verbs (Verbos HTTP). Cada um deles implementa uma semântica diferente, mas alguns recursos são compartilhados por um grupo deles, como por exemplo, qualquer método de requisição pode ser do tipo safe, idempotent ou cacheable.”</p>
+
+            <b>GET</b>
+            <p>O método GET solicita a representação de um recurso específico. Requisições utilizando o método GET devem retornar apenas dados.</p>
+
+            <b>HEAD</b>
+            <p>O método HEAD solicita uma resposta de forma idêntica ao método GET, porém sem conter o corpo da resposta.</p>
+
+            <b>POST</b>
+            <p>O método POST é utilizado para submeter uma entidade a um recurso específico, frequentemente causando uma mudança no estado do recurso ou efeitos colaterais no servidor.</p>
+
+            <b>PUT</b>
+            <p>O método PUT substitui todas as atuais representações do recurso de destino pela carga de dados da requisição.</p>
+
+            <b>DELETE</b>
+            <p>O método DELETE remove um recurso específico.</p>
+
+            <b>CONNECT</b>
+            <p>O método CONNECT estabelece um túnel para o servidor identificado pelo recurso de destino.</p>
+
+            <b>OPTIONS</b>
+            <p>O método OPTIONS é usado para descrever as opções de comunicação com o recurso de destino.</p>
+
+            <b>TRACE</b>
+            <p>O método TRACE executa um teste de chamada loop-back junto com o caminho para o recurso de destino.</p>
+
+            <b>PATCH</b>
+            <p>O método PATCH é utilizado para aplicar modificações parciais em um recurso.</p>
+
+            <a href="Fonte: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods">Fonte: Mozilla</a> <br>
+
+            <b>Códigos de resposta HTTP - Status code HTTP</b>
+
+            <p>Os códigos de status das respostas HTTP indicam se uma requisição HTTP foi corretamente concluída. As respostas são agrupadas em cinco classes:</p>
+            <p>Respostas de informação (100-199)</p>
+            <p>Respostas de sucesso (200-299)</p>
+            <p>Redirecionamentos (300-399)</p>
+            <p>Erros do cliente (400-499)</p>
+            <p>Erros do servidor (500-599)</p>
+
+            <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status">Fonte: Mozilla</a>
+
+            <b>Exemplo de uso do protocolo HTTP</b>
+            <p>Agora vou mostrar alguns códigos em PHP que demonstram o uso do HTTP.</p>
+
+            <b>Método GET</b>
+
+            <p>nano index.html</p>
+            <div>
+                &lt;form action=&quot;mensagem.php&quot; method=&quot;get&quot;&gt; <br>
+                &lt;label&gt;Nome:&lt;/label&gt; <br>
+                &lt;input type=&quot;text&quot; name=&quot;nome&quot;&gt; <br>
+                &lt;label&gt;E-mail:&lt;/label&gt; <br>
+                &lt;input type=&quot;email&quot; name=&quot;email&quot;&gt; <br>
+                &lt;input type=&quot;submit&quot; value=&quot;Enviar&quot;&gt; <br>
+                &lt;/form&gt;   
+            </div>
+
+            <p>O arquivo index.php é um formulário feito em HTML e PHP, o formulário em si é bem simples, ele simplesmente define um campo para o usuário digitar o nome e o email, e quando o botão enviar é pressionado os dados serão enviados para o arquivo mensagem.php.</p>
+
+            <p>Vamos dar uma olhada no arquivo mensagem.php</p>
+
+            <p>nano mensagem.html</p>
+            <div>
+                &lt;p&gt;Bem-vindo &lt;?php echo $_GET[&quot;nome&quot;];?&gt;&lt;/p&gt; <br>
+                &lt;p&gt;Seu e-mail é: &lt;?php echo $_GET[&quot;email&quot;];?&gt;&lt;/p&gt;
+            </div>
+
+            <p>O arquivo mensagem.php irá simplesmente mostrar a mensagem “Bem-vindo” mais o nome que foi inserido no formulário, e também será mostrado a mensagem “Seu e-mail é” mais o e-mail inserido no formulário. Veja que, os dados inseridos no formulário anteriormente são acessados usando a variável superglobal $_GET</p>
+
+            <b>Método POST</b>
+            <p>Agora, vou alterar o método get para post, para o envio do formulário.</p>
+
+            <p>nano index.html</p>
+            <div>
+                &lt;form action=&quot;mensagem.php&quot; method=&quot;post&quot;&gt; <br>
+                &lt;label&gt;Nome:&lt;/label&gt; <br>
+                &lt;input type=&quot;text&quot; name=&quot;nome&quot;&gt; <br>
+                &lt;label&gt;E-mail:&lt;/label&gt; <br>
+                &lt;input type=&quot;email&quot; name=&quot;email&quot;&gt; <br>
+                &lt;input type=&quot;submit&quot; value=&quot;Enviar&quot;&gt; <br>
+                &lt;/form&gt;   
+            </div>
+
+            <p>nano mensagem.html</p>
+            <div>
+                &lt;p&gt;Bem-vindo &lt;?php echo $_POST[&quot;nome&quot;];?&gt;&lt;/p&gt; <br>
+                &lt;p&gt;Seu e-mail é: &lt;?php echo $_POST[&quot;email&quot;];?&gt;&lt;/p&gt;
+            </div> <br> <br>
+
+            <b>Protocolo DNS</b>
+            <p>O DNS (Servidor de Nome de Domínio - Domain Name Servers) é o responsável por traduzir a URL para um endereço IP. Sendo o IP um endereço numérico único, ou seja, cada dispositivo conectado à internet possui um endereço IP diferente. Como por exemplo, a URL: https://www.google.com.br/ é igual ao endereço IP  216.58.222.14</p>
+
+            <p>Será pesquisada no servidor DNS é será retornado o endereço IP: 216.58.222.14</p>
+
+            <p>Existem vários assuntos relacionados ao protocolo DNS, como: Processo de resolução do DNS; DNS Recursivo; Servidor-raiz ou root nameserver; Servidor de domínio de topo ou TLD nameserver; Servidor Autoritativo</p>
+
+            <b>Formato da mensagem DNS</b>
+            <p>Esse é o formato de uma mensagem do DNS, não vou entrar em detalhes sobre o que cada área significa, esse já é um assunto um pouco mais avançado, só coloquei para vocês saberem que existe. Mas, se você quiser saber mais sobre, recomendo a leitura do livro “Redes de computadores e a internet uma abordagem top-down”, que é de onde eu peguei essa imagem.</p>
+
+            <b>Camada de Transporte - TCP/IP</b>
+            <p>“A camada de transporte da Internet carrega mensagens da camada de aplicação entre os lados do cliente e servidor de uma aplicação. Há dois protocolos de transporte na Internet: TCP e UDP, e qualquer um pode levar mensagens da camada de aplicação.” Fonte: Redes de computadores e a internet uma abordagem top-down</p>
+
+            <b>Protocolo TCP</b>
+            <p>O protocolo TCP (Transmission Control Protocol) é um dos protocolos da camada 2 do modelo TCP/IP, ele é usado para transportar os dados da camada de aplicação.</p>
+
+            <p>O protocolo TCP é:</p>
+            <ul>
+                <li>Orientado a conexão: pois, antes que a transferência dos dados seja feita, é necessário que seja estabelecida uma conexão entre o cliente e o servidor. O processo de estabelecimento da conexão é chamado de three-way handshake.</li>
+
+                <li>Full-duplex: o full-duplex significa que é possível a transferência simultânea em ambas as direções (cliente e servidor).</li>
+
+                <li>Conexão ponto a ponto: a conexão TCP é ponto a ponto, ou seja, a conexão só acontece entre um único remetente e um único destinatário.</li>
+            </ul>
+
+            <b>TCP flags</b>
+            <p>No TCP as flags são usadas para indicar um estado específico da conexão ou para fornecer alguma informação adicional.</p>
+
+            <ul>
+                <li>Synchronization (SYN): usado para estabelecer conexões.</li>
+
+                <li>Acknowledgement (ACK): Indica que o campo de confirmação de um segmento especifica o próximo número de sequência que o remetente desse segmento espera receber.</li>
+
+                <li>Finish (FIN): Usado para limpar conexões.</li>
+
+                <li>Reset (RST): indica que o receptor deve excluir a conexão sem interação adicional.</li>
+
+                <li>Urgent (URG): Indica que o campo urgente é significativo e deve ser adicionado ao número de sequência do segmento.</li>
+
+                <li>Push (PSH): indica que os dados na chamada devem ser imediatamente enviados para o usuário receptor.</li>
+            </ul>
+
+            <a href="https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_data_acl/configuration/15-e/sec-data-acl-15-e-book/sec-create-filter-tcp.html">Link de referência</a> <br>
+
+            <b>Cabeçalho TCP</b>
+            <p>O campo dos Bits de código é onde ficam as flags do TCP.</p>
+
+            <b>TCP: three-way handshake</b>
+            <p>O three-way handshake (aperto de mão em três vias) é chamado assim por que para que a conexão entre o cliente e o servidor seja feita é necessário a troca de três mensagens. O processo começa quando o cliente envia um pacote SYN (synchronize) para o servidor, solicitando uma conexão. O servidor responde com um pacote SYN-ACK (synchronize-acknowledge), confirmando que recebeu a solicitação e está pronto para estabelecer uma conexão. Finalmente, o cliente envia um pacote ACK (acknowledge) para o servidor, confirmando que também está pronto para estabelecer a conexão. Depois que essas três mensagens são trocadas, a conexão é estabelecida e os dados podem ser transmitidos entre os dispositivos.</p>
+
+            <b>Portas - Protocolos de rede</b>
+            <p>“As portas são locais virtuais dentro de um sistema operacional onde as conexões de rede começam e terminam. Elas ajudam os computadores a classificar o tráfego de rede que recebem.” Por exemplo, os e-mails vão para a porta 25, que é a porta do protocolo SMTP, já a porta do protocolo HTTP é a 80, do HTTPS é a 443.</p>
+
+            <p>Portas 20 e 21: Protocolo de Transferência de Arquivos (FTP)</p>
+
+            <p>Porta 22: Secure Shell (SSH)</p>
+
+            <p>Porta 25: Simple Mail Transfer Protocol (SMTP)</p>
+
+            <p>Porta 53: Domain Name System (DNS)</p>
+
+            <p>Porta 80: Protocolo de Transferência de Hipertexto (HTTP)</p>
+
+            <p>Porta 443: HTTP Seguro (HTTPS)</p>
+
+            <p>Vale destacar que existem 65.536 portas, numeradas de 0 a 65535.</p>
+
+            <b>Protocolo UDP</b>
+            <p>O protocolo UDP (User Datagram Protocol) é um protocolo de transporte não orientado à conexão, que permite o envio de datagramas (pacotes) de uma origem para um destino sem a necessidade de estabelecer uma conexão prévia.</p>
+
+            <p>O protocolo UDP:</p>
+            <ul>
+                <li>Não oferece garantias de entrega, ordem ou integridade dos dados.</li>
+
+                <li>É usado em aplicações de tempo real, como jogos online, transmissão de áudio e vídeo, entre outros.</li>
+            </ul>
+
+            <b>Como o scan UDP funciona?</b>
+            <p>O scan UDP funciona enviando um cabeçalho UDP vazio (sem dados) para cada porta almejada. Se um erro ICMP de porta inalcançável (tipo 3, código 3) é retornado, a porta está fechada. Outros erros do tipo inalcançável (tipo 3, códigos 1, 2, 9, 10, ou 13) marcam a porta como filtrada. Ocasionalmente um serviço irá responder com um pacote UDP, provando que está aberto. Se nenhuma resposta é recebida após as retransmissões, a porta é classificada como aberta|filtrada. Isso significa que a porta poderia estar aberta, ou talvez que filtros de pacotes estejam bloqueando a comunicação. Scans de versões (-sV) podem ser utilizados para ajudar a diferenciar as portas verdadeiramente abertas das que estão filtradas. <a href="https://nmap.org/man/pt_BR/man-port-scanning-techniques.html">Fonte: Nmap</a></p>
+
+            <p>Ou seja, o Nmap determina se uma porta está filtrada ou fechada com base em um erro do ICMP, é caso o servidor responda com um pacote UDP, o Nmap irá marcar ela como aberta.</p>
+
+            <p>Veja que é retornada uma mensagem de erro ICMP, essa mensagem significa que o pacote enviado pelo servidor não pode ser entregue, pois não existe ninguém ouvindo na porta. No caso aqui, é que o Nmap envia um pacote vazio para o servidor e o servidor vai responder com a frase “Mensagem recebida”, sem se importar com se o pacote está vazio ou não. Note que, a frase enviada pelo servidor “Mensagem recebida” é entendida pelo Nmap como um pacote UDP, por isso ele marca a porta como aberta.</p>
+
+            <b>Camada de Rede/Internet</b>
+            <p>A camada de rede, também conhecida como camada de inter-rede, é responsável pela transferência de dados entre dispositivos da inter-rede. É nela que se realiza a função de roteamento.</p>
+
+            <p>Os principais componentes desta camada são os seguintes protocolos:</p>
+
+            <ul>
+                <li>IP - o Internet Protocol oferece um serviço de datagrama não confiável entre dispositivos da inter-rede. O protocolo IP envia, recebe e roteia pacotes, denominados datagramas IP, entre as várias estações da inter-rede, mas não garante que os mesmos sejam entregues à estação destino. Com isso, datagramas podem ser perdidos, duplicados ou chegarem em sequência diferente daquela em que foram enviados.</li>
+
+                <li>ICMP - o Internet Control Message Protocol auxilia o protocolo IP, pois é usado pelas camadas de rede de estações distintas para troca de mensagens de erro e outras informações de controle essenciais.</li>
+            </ul>
+
+            <b>O que é um endereço IP?</b>
+            <p>Um endereço IP é um identificador único atribuído a cada dispositivo conectado a uma rede de computadores que usa o Protocolo de Internet para comunicação. Pense em um endereço IP como um “endereço de correspondência”, ou seja, ele serve para que os pacotes de dados possam ser roteados corretamente entre os dispositivos. É importante destacar que existem dois tipos de endereços, o endereço físico, que no caso é o endereço MAC, esse endereço é gravado na placa de rede da máquina, é o segundo tipo de endereço é o endereço lógico, que é configurado pelo software, no caso do TCP/IP, o endereço lógico é equivalente ao endereço IP.</p>
+
+            <b>Versões do Protocolo de Internet - IP</b>
+            <p>Existem duas versões do Protocolo de Internet em uso atualmente: IPv4 e IPv6. O IPv4 usa endereços de 32 bits, enquanto o IPv6 usa endereços de 128 bits. Isso significa que o IPv6 pode suportar uma quantidade muito maior de endereços únicos do que o IPv4. Sendo esse o motivo da criação do IPv6, basicamente, conforme os dispositivos foram conectados a internet os endereços IPs foram acabando, então para resolver esse problema criaram o IPv6, que está sendo implementado aos poucos.</p>
+
+            <b>Tipos de IPs</b>
+            <p>Em geral, os endereços IPs são categorizados em dois tipos: IP público, IP privado. Cada dispositivo conectado à internet tem os dois tipos de IP.</p>
+
+            <b>IP público e IP privado</b>
+            <p>Um endereço IP público é acessível por qualquer pessoa na internet, ele é fornecido pelo seu provedor de serviços de internet (ISP). Já o IP privado é um endereço exclusivo que o roteador dá aos dispositivos conectados a ele. O IP privado não funciona na internet, só na rede local.</p>
+
+            <b>IP dinâmico e IP estático</b>
+            <p>Os endereços IP públicos são divididos em dois tipos: IP dinâmico e IP estático. A característica do endereço IP dinâmico é que ele é atribuído automaticamente a um dispositivo por um servidor DHCP e esse tipo de endereço IP muda frequentemente, quando o roteador é reiniciado. O IP dinâmico é usado em roteadores. O endereço IP estático é o oposto do endereço IP dinâmico, ou seja, ele é atribuído manualmente a um dispositivo é ele não muda ao longo do tempo. O IP estático é usado por servidores web, servidores de e-mail, entre outros.</p>
+
+            <b>Como acessar o meu IP público</b>
+            <p>Se você quiser descobrir o seu endereço IP público basta acessar sites como o da NordVPN ou o whatismyipaddress.com</p>
+
+            <b>Como alguém pode descobrir meu endereço de IP?</b>
+            <p>Existem algumas ferramentas que podem ser usadas para descobrir o endereço IP de alguém e a localização, as mais comuns são o ip logger e o seeker. Você também pode fazer a sua própria ferramenta que pega o IP de alguém, a sua localização, se a pessoa está usando VPN ou não.</p>
+
+            <b>O que é possível fazer com o endereço IP de alguém?</b>
+            <p>Vamos imaginar que alguém conseguiu pegar o seu endereço IP, o que essa pessoa é capaz de fazer com ele? O mais comum é a pessoa escanear o IP usando o Nmap, é assim descobrir se tem alguma porta aberta no roteador, ou tentar fazer login usando as credenciais padrão do roteador, é possível também fazer um ataque de brute force para descobrir a senha.</p>
+
+            <p>Agora, você deve estar se perguntando o que fazer caso alguém pegue o seu IP. Para responder essa pergunta, eu vou ter que relembrar a você o conceito de IP dinâmico: O endereço IP dinâmico muda frequentemente, quando o roteador é reiniciado. Pronto, essa é a resposta, veja bem, o endereço IP usado na internet é o IP do roteador que é público é dinâmico, ou seja, se alguém pegar o seu IP é necessário apenas que você reinicie o roteador para que o endereço IP mude, você pode fazer o teste se quiser, entre em algum site que mostra o seu endereço IP e depois reinicie o seu roteador e volte a acessar o site que mostra o seu endereço IP, você vai ver que ele mudou.</p>
+
+            <b>Camada de enlace - TCP/IP</b>
+            <p>A camada de interface de rede, também conhecida como camada de enlace de dados, é responsável por aceitar datagramas IP da camada de rede e transmiti-los, na rede física específica, na forma de quadros. Ela compatibiliza a tecnologia da rede física com o protocolo IP. Geralmente, esta camada inclui o driver de dispositivo no sistema operacional e a respectiva placa de rede, tratando os detalhes de hardware para conexão física com a rede e transmissão de dados no meio físico. Assim, podemos dizer que a camada de interface de rede é basicamente suportada pela própria tecnologia da rede física.</p>
+
+            <b>Camada física - TCP/IP</b>
+            <p>Enquanto a tarefa da camada de enlace é movimentar quadros inteiros de um elemento da rede até um elemento adjacente, a da camada física é movimentar os bits individuais que estão dentro do quadro de um nó para o seguinte. Os protocolos nessa camada de novo dependem do enlace e, além disso, do próprio meio de transmissão do enlace (por exemplo, fios de cobre trançado ou fibra ótica monomodal). Por exemplo, a Ethernet tem muitos protocolos de camada física: um para par de fios de cobre trançado, outro para cabo coaxial, mais um para fibra e assim por diante. Em cada caso, o bit atravessa o enlace de um modo diferente.</p>
+
+            <b>Segurança em redes de computadores</b>
+            <p>Agora, eu vou falar um pouco sobre alguns ataques e vulnerabilidades envolvendo redes de computadores, para isso, vou pegar um trecho do livro Redes de computadores e a internet uma abordagem top-down, onde o autor fala algo bem interessante sobre o início da internet: ... deve-se considerar como a Internet se tornou um local inseguro, antes de tudo. A resposta breve é que a Internet foi, a princípio, criada dessa maneira, baseada no modelo de “um grupo de usuários de confiança mútua ligados a uma rede transparente" [Blumenthal, 2001] - um modelo no qual (por definição) não há necessidade de segurança. Muitos aspectos da arquitetura inicial da Internet refletem profundamente essa noção de confiança mútua. Por exemplo, a capacidade de um usuário enviar um pacote a qualquer outro é mais uma falha do que um recurso solicitado/concedido, e acredita-se piamente na identidade do usuário, em vez de ela ser autenticada como padrão.</p>
+
+            <p>Com base nesse trecho podemos notar que a internet foi projetada de uma forma que a torna insegura, o que dá espaço para o surgimento de algumas vulnerabilidades como o ip spoofing (falsificação de IP). Um exemplo de um ataque de falsificação de IP é o ataque contra o GitHub que aconteceu em fevereiro de 2018, o ataque de falsificação de IP levou a um ataque DDoS que derrubou a plataforma por cerca de 20 minutos.</p>
+
+            <p>Você lembra que no início do vídeo eu falei sobre a exploração de uma vulnerabilidade no protocolo Bluetooth? Pois bem, é possível fazer a exploração de outros protocolos como o HTTP, DNS, FTP, entre outros.</p>
+
+            <p>Está nos meus planos fazer alguns artigos mostrando como funciona a exploração de vulnerabilidades em protocolos de forma prática, então continue acompanhando o site.</p>
+
+            <p>Espero que tenham gostado e aprendido algo novo hoje. Até o próximo artigo!!</p>
+
+        </main>
+
+        <footer>
+            <span><a href="https://www.youtube.com/@ScriptBr101">Autor: ScriptBr 101</a></span>
+        </footer>
+    </body>
+</html>
