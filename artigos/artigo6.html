@@ -73,160 +73,25 @@
         <main>
             <h1>Redes de computadores</h1>
 
-            <p>Vamos aprender como um dispositivo se comunica com o outro, como os sites são construídos, as principais vulnerabilidades da web e dos servidores e também iremos aprender um pouco sobre o linux.</p>
+            <p>No artigo de hoje irei falar sobre redes de computadores com foco em segurança cibernética. Basicamente, irei falar sobre o modelo OSI é o modelo TCP/IP, isso com o objetivo de explicar como os dispositivos se comunicam, falarei também sobre algumas vulnerabilidades relacionadas a redes de computadores, mas não vou me aprofundar nisso hoje.</p>
 
-            <h2>A internet e a Web</h2>
+            <p>Eu irei abordar o modelo OSI de forma teórica, mas no modelo TCP/IP irei mostrar de forma mais prática, para isso eu usarei o wireshark, alguns scripts em python e php o burp suite é o nmap. O tempo do vídeo está na descrição, caso você queira ver algo em específico no vídeo, mas de qualquer forma eu recomendo que assista ele por inteiro, por fim, só gostaria de avisar que peguei várias definições e exemplos de alguns livros e artigos, todos eles foram referenciados caso você queira ler por inteiro o texto.</p>
+            
+            <h2>Como os dispositivos se comunicam? (OSI, TCP/IP)<h2>
+            
+            <p>A comunicação entre os dispositivos é feita de várias formas, por exemplo, os dispositivos podem se comunicar usando algum tipo de rede, como por exemplo a internet, ou usando protocolos como o Bluetooth que não usa uma rede externa para se comunicar, mas sim o próprio protocolo para estabelecer a conexão entre os dispositivos. Em ambos os casos, a comunicação entre os dispositivos está vulnerável, podendo assim ser explorada por alguém. No caso do protocolo Bluetooth, uma vulnerabilidade bem interessante é a BlueBorne. Essa vulnerabilidade permite que um hacker assuma o controle de qualquer dispositivo que use o Bluetooth. Ao explorar essa vulnerabilidade com sucesso o hacker pode roubar dados do dispositivo, espalhar malware e até criar grandes botnets. Vou colocar na descrição do vídeo um artigo explicando em mais detalhes essa vulnerabilidade.</p>
 
-            <p>A internet está presente no nosso dia a dia há vários anos, mas você sabe como ela funciona? Bem… se você deseja hackear algum sistema, entender como um dispositivo se comunica com outro é fundamental, sendo a internet um dos principais meios de comunicação do mundo atual é indispensável entender o seu funcionamento.</p>
+            <a href="https://www.armis.com/research/blueborne">Link do artigo explicando a vulnerabilidade BlueBorne/</a>
 
-            <p>Sendo assim, a seguir vamos entender a essência da internet:</p>
-
+            <p>Neste artigo, eu vou focar em explicar como a internet funciona e os principais protocolos usados e os ataques relacionados a eles.</p>
+                
             <b>O que é a internet?</b>
+            <p>Vamos começar definindo o que é a internet:</p>
+            <p>Segundo o livro “Redes de computadores e a internet uma abordagem top-down”: “A Internet é uma rede de computadores que interconecta centenas de milhões de dispositivos de computação ao redor do mundo.”</p>
 
-            <p>A internet é uma rede que conecta os dispositivos (computador, smartphone, tablet, etc) do mundo, permitindo assim que seja compartilhado milhões de terabytes de dados, como por exemplo e-mail, fotos, vídeos, etc. Normalmente tratamos a internet e a Web como sinônimos, mas são conceitos diferentes, pois a  Web (World Wide Web, o famoso WWW) é apenas um dos serviços que funciona sobre a infraestrutura da internet.</p>
-
-            <p>É importante notar que existem diversos serviços que funcionam com base na infraestrutura da internet, como por exemplo o e-mail e IRC. Fazendo uma analogia simples, a internet é igual a uma estrada gigante que conecta o mundo, e a Web seria como uma das portas que permite o acesso a essa estrada. Mas como as informações são transportadas pela internet? Como essas informações não são enviadas para o lugar errado?</p>
-
-            <p>Antes de responder essas perguntas precisamos entender o conceito de cliente e servidor.</p>
-
-            <h2>Clientes e Servidores</h2>
-
-            <p>Os clientes são os dispositivos que consomem o conteúdo que está armazenado nos servidores, sendo que os servidores são os computadores responsáveis por armazenar os dados, como por exemplo sites, aplicativos, banco de dados. Ou seja, quando você acessa um site, você é o cliente, e o servidor é o que envia o conteúdo do site a você.</p>
-
-            <p>Vamos imaginar que você quer acessar o site www.exemplo.com.br.</p>
-
-            <p>O seu navegador irá fazer uma solicitação ao servidor DNS pedindo o endereço IP da URL www.exemplo.com.br, em seguida o navegador (em posse do endereço IP), irá fazer uma solicitação (request) ao servidor do site, pedindo uma cópia da página web, e o servidor irá responder (response) a solicitação enviando o conteúdo para que o mesmo seja baixado no seu dispositivo para que assim você possa acessá-lo.</p>
-
-            <p>A comunicação entre o cliente e o servidor do site será feita usando o protocolo HTTP. Essa comunicação é transportada usando o modelo TCP/IP.</p>
-
-            <p>Para ficar mais fácil de entender, vamos fazer uma analogia:</p>
-
-            <p>Vamos imaginar que você tem uma lista de doces para comprar, mas você não conhece a cidade, então você faz o seguinte:</p>
-
-            <p>Você pesquisa o endereço da loja de doces (o servidor DNS pesquisa o endereço IP do site)</p>
-
-            <p>Ao encontrar o endereço da loja, você pega um carro e vai até a loja com a sua lista de compras (no caso o carro é igual ao modelo TCP/IP, ou seja, transporta algo)</p>
-
-            <p>Ao chegar na loja, você precisa falar o mesmo idioma do vendedor, para a comunicação acontecer (o protocolo HTTP e o idioma do cliente e do servidor)</p>
-
-            <p>Então você volta para a casa com os doces (o conteúdo do site é enviado ao cliente).</p>
-
-            <h2>DNS</h2>
-            <p>O DNS (Servidor de Nome de Domínio - Domain Name Servers) é o responsável por traduzir a URL para um endereço IP. Sendo o IP um endereço numérico único, ou seja, cada dispositivo conectado à internet possui um endereço IP diferente.</p>
-
-            <p>Como por exemplo, a URL:</p>
-            <b>https://www.google.com.br/</b>
-
-            <p>Será pesquisada no servidor DNS é será retornado o endereço IP: <b>216.58.222.14</b></p>
-
-            <h2>HTTP</h2>
-            <p>Como mencionado anteriormente o HTTP (Protocolo de Transferência de Hipertexto - Hypertext Transfer Protocol) é o protocolo que o cliente usa para conversar com o servidor.</p>
-
-            <h2>Métodos HTTP</h2>
-            <p>Os métodos HTTP definem o que o servidor deve fazer com um determinado recurso.</p>
-
-            <b>Principais métodos HTTP:</b>
-            <b>GET</b>
-            <p>O método GET é usado para solicitar algum recurso ao servidor.</p>
-
-            <b>HEAD</b>
-            <p>O método HEAD é usado para solicitar algum recurso ao servidor (igual ao método GET) mas sem o corpo da resposta.</p>
-
-            <b>POST</b>
-            <p>O método POST é usado para enviar arquivos, dados e formulários HTML ao servidor.</p>
-
-            <b>DELETE</b>
-            <p>O método DELETE é usado para remover um determinado recurso.</p>
-
-            <b>Códigos de resposta HTTP</b>
-            <p>Os códigos de resposta HTTP revelam se uma determinada solicitação foi concluída com sucesso.</p>
-
-            <p>Os códigos HTTP são divididos em cinco classes:</p>
-            <p>100-199 : Respostas de informação.</p>
-            <p>200-299 : Respostas de sucesso</p>
-            <p>300-399 : Redirecionamentos</p>
-            <p>400-499 : Erros do cliente</p>
-            <p>500-599 : Erros do servidor</p>
-
-            <b>Cabeçalhos HTTP</b>
-            <p>Os cabeçalhos HTTP são usados para transmitir informações adicionais ao cliente ou servidor.</p>
-
-            <b>Principais cabeçalhos HTTP</b>
-            <b>Host</b>
-            <p>O cabeçalho Host é usado para especificar o nome de domínio do servidor. No exemplo da requisição anterior o cabeçalho Host possui o valor www.exemplo.com.br.</p>
-
-            <b>Connection</b>
-            <p>O cabeçalho Connection é usado para especificar se uma conexão irá ficar aberta ou não depois da primeira solicitação ao servidor.</p>
-
-            <p>O Connection possui dois valores:</p>
-            <p>keep-alive : esse valor define que a conexão é persistente, ou seja, permite que sejam feitas requisições futuras ao mesmo servidor.</p>
-
-            <p>close : esse valor especifica que o cliente ou o servidor deseja fechar a conexão.</p>
-
-            <h2>Accept</h2>
-            <p>O cabeçalho Accept é usado para especificar quais tipos de conteúdo o cliente entende.</p>
-
-            <p>Alguns dos valores do Accept são:</p>
-
-            <p>Accept: text/html : Aceita apenas texto html.</p>
-            <p>Accept: image/* : Aceita qualquer tipo de imagem, como por exemplo image/png, image/gif.</p>
-            <p>Accept: */* : Aceita tudo.</p>
-            <p>Accept: text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8 : Esse valor é o padrão para requisições de navegação.</p>
-
-            <p>O valor do Accept será retornado na resposta do servidor, no cabeçalho Content-Type.</p>
-
-            <b>User-Agent</b>
-            <p>O cabeçalho User-Agent é usado para especificar qual sistema operacional, fornecedor ou versão o cliente está usando.</p>
-
-            <p>O valor desse cabeçalho identifica o navegador do cliente, junto com outras informações.</p>
-
-            <b>Accept-Encoding</b>
-            <p>O cabeçalho Accept-Encoding é usado para especificar qual codificação o cliente aceita.</p>
-            <p>Alguns valores desse cabeçalho, são:</p>
-            <p>ccept-Encoding: gzip : Esse valor define o formato de compreensão como Lempel-Ziv coding (LZ77), com CRC de 32-bits.</p>
-
-            <p>Accept-Encoding: * : Esse valor define que é aceitável qualquer codificação de conteúdo. Esse é o valor padrão.</p>
-
-            <p>O valor Accept-Encoding será retornado na resposta do servidor, no cabeçalho Content-Encoding.</p>
-
-            <h2>Server</h2>
-            <p>Esse cabeçalho revela qual é o software usado pelo servidor. No nosso exemplo o servidor e o Apache.</p>
-
-            <h2>TCP/IP</h2>
-            <p>Anteriormente, foi apresentado de forma breve o modelo TCP/IP. Nesta seção será explicado de forma mais profunda esse modelo.</p>
-
-            <p>O TCP/IP (Protocolo de Controle de Transmissão e Protocolo de Internet - Transmission Control Protocol e Internet Protocol) é um conjunto de protocolos que define como a comunicação entre dois ou mais computadores acontece.</p>
-
-            <p>O modelo TCP/IP é dividido em quatro camadas: Aplicação, Transporte, Rede e Interface de rede.</p>
-
-            <b>Aplicação</b>
-
-            <p>A camada de aplicação é a primeira na arquitetura TCP/IP, sendo responsável por realizar a comunicação entre os programas e os protocolos de transporte. Os protocolos DNS e HTTP funcionam na camada de aplicação, outros protocolos que pertencem a essa camada, são:</p>
-
-            <p>FTP (File Transfer Protocol) : O FTP é usado para enviar arquivos entre dois computadores.</p>
-
-            <p>SMTP (Send Mail Transfer Protocol) : O SMTP é usado para enviar e receber e-mails.</p>
-
-            <b>Transporte</b>
-            <p>A camada de Transporte é responsável por definir um padrão de qualidade de serviço para que a conexão seja estabelecida, mantida e encerrada. Os principais protocolos usados dentro dessa camada são:</p>
-
-            <p>UDP (User Datagram Protocol) : O protocolo UDP é usado para transferir dados, que não necessite de garantia de integridade ou confiabilidade. O UDP é adequado para se usar em situações em que a velocidade de transmissão dos dados é mais importante que a qualidade. Como por exemplo em videoconferências e jogos.</p>
-
-            <p>TCP (Transmission Control Protocol) : O protocolo TCP é orientado a conexão, ou seja, garante a integridade e ordem dos dados enviados. O TCP usa um three way handshake para estabelecer uma conexão confiável.</p>
-
-            <p>Para você entender o three way handshake imagine que o host A quer estabelecer uma conexão com o host B, para que isso aconteça, será necessário que:</p>
-
-            <p>O host A envie um pacote de sincronização SYN (SYNchronize) ao host B.</p>
-
-            <p>O host B irá responder com um pacote SYN-ACK (SYNchronize-ACKnowledgment).</p>
-
-            <p>É por fim o host A irá enviar um pacote ACK (ACKnowledge) para o host B, estabelecendo assim a conexão.</p>
-
-            <h2>Rede</h2>
-            <p>A camada de Rede, também conhecida como camada de Internet, é responsável por adicionar o cabeçalho no pacote, especificando o endereço IP de origem e destino</p>
-
-            <p>A camada de Rede ou Internet é a responsável por adicionar o cabeçalho no pacote de dado recebido da camada de Transporte, onde além de outros dados de controle, será adicionado o endereço IP fonte e o endereço IP de destino.</p>
-
+            <b>O que é um protocolo?</b>
+            <p>Anteriormente eu falei sobre o protocolo Bluetooth, mas qual é a definição de um protocolo? Um protocolo é simplesmente um conjunto de regras que definem como os dispositivos devem se comunicar. Pense em um protocolo como uma linguagem que os dispositivos (computadores) usam para se comunicar, mesmo que os dispositivos sejam diferentes. Existem vários protocolos, é cada um tem um propósito específico, por exemplo:
+Um dos principais protocolos usados na internet é o HTTP (Hypertext Transfer Protocol). O e-mail usa os protocolos SMTP (Simple Mail Transfer Protocol), POP3 (Post Office Protocol — versão 3) ou o IMAP (Internet Message Access Protocol). Para que os dispositivos (computadores) se comuniquem eles têm que usar os mesmos protocolos. E assim como o protocolo Bluetooth cada protocolo tem as suas vulnerabilidades, eu irei mostrar alguns exemplos em breve. Mas, antes precisamos entender o modelo OSI e o modelo TCP/IP.</p>
             <p>Espero que tenham gostado e aprendido algo novo hoje. Até o próximo artigo!!</p>
 
         </main>
